@@ -14,4 +14,6 @@
 
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
++ (IOSBoilerplateAppDelegate*) sharedAppDelegate;
+
 @end

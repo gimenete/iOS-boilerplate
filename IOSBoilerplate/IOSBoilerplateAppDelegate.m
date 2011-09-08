@@ -7,11 +7,16 @@
 //
 
 #import "IOSBoilerplateAppDelegate.h"
+#import "ImageManager.h"
 
 @implementation IOSBoilerplateAppDelegate
 
 @synthesize window = _window;
 @synthesize navigationController = _navigationController;
+
++ (IOSBoilerplateAppDelegate*) sharedAppDelegate {
+	return (IOSBoilerplateAppDelegate*) [UIApplication sharedApplication].delegate;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -59,6 +64,11 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    [ImageManager releaseSingleton];
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+	[ImageManager clearMemoryCache];
 }
 
 - (void)dealloc
