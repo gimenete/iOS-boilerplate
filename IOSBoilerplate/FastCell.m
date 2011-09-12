@@ -43,6 +43,7 @@
 	b.size.height -= 1; // leave room for the seperator line
 	
 	[contentView setFrame:b];
+    [self setNeedsDisplay];
 }
 
 - (void)setNeedsDisplay {

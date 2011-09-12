@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09153E17141A16CB004E138C /* VariableHeightExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 09153E15141A16CB004E138C /* VariableHeightExample.m */; };
+		09153E18141A16CB004E138C /* VariableHeightExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09153E16141A16CB004E138C /* VariableHeightExample.xib */; };
+		09153E1C141A176C004E138C /* VariableHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09153E1B141A176C004E138C /* VariableHeightCell.m */; };
+		0927075A141E4BDF00E778AE /* DirectionsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 09270758141E4BDF00E778AE /* DirectionsExample.m */; };
+		0927075B141E4BDF00E778AE /* DirectionsExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09270759141E4BDF00E778AE /* DirectionsExample.xib */; };
+		0927075E141E4C7800E778AE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0927075D141E4C7800E778AE /* MapKit.framework */; };
+		09270761141E4E2B00E778AE /* StringHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 09270760141E4E2B00E778AE /* StringHelper.m */; };
+		09270764141E4EC900E778AE /* DataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 09270763141E4EC900E778AE /* DataHelper.m */; };
+		09270767141E4F8500E778AE /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 09270766141E4F8400E778AE /* Place.m */; };
+		09270769141E52BB00E778AE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09270768141E52BB00E778AE /* CoreLocation.framework */; };
+		0927076D141E53AB00E778AE /* AutocompleteLocationExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0927076B141E53AB00E778AE /* AutocompleteLocationExample.m */; };
+		0927076E141E53AB00E778AE /* AutocompleteLocationExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0927076C141E53AB00E778AE /* AutocompleteLocationExample.xib */; };
 		09885E951418F2E500CCE17A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09885E941418F2E500CCE17A /* UIKit.framework */; };
 		09885E971418F2E500CCE17A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09885E961418F2E500CCE17A /* Foundation.framework */; };
 		09885E991418F2E600CCE17A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09885E981418F2E600CCE17A /* CoreGraphics.framework */; };
@@ -63,6 +75,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09153E14141A16CB004E138C /* VariableHeightExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableHeightExample.h; sourceTree = "<group>"; };
+		09153E15141A16CB004E138C /* VariableHeightExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableHeightExample.m; sourceTree = "<group>"; };
+		09153E16141A16CB004E138C /* VariableHeightExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VariableHeightExample.xib; sourceTree = "<group>"; };
+		09153E1A141A176C004E138C /* VariableHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariableHeightCell.h; sourceTree = "<group>"; };
+		09153E1B141A176C004E138C /* VariableHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VariableHeightCell.m; sourceTree = "<group>"; };
+		09270757141E4BDF00E778AE /* DirectionsExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsExample.h; sourceTree = "<group>"; };
+		09270758141E4BDF00E778AE /* DirectionsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsExample.m; sourceTree = "<group>"; };
+		09270759141E4BDF00E778AE /* DirectionsExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DirectionsExample.xib; sourceTree = "<group>"; };
+		0927075D141E4C7800E778AE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0927075F141E4E2B00E778AE /* StringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringHelper.h; sourceTree = "<group>"; };
+		09270760141E4E2B00E778AE /* StringHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringHelper.m; sourceTree = "<group>"; };
+		09270762141E4EC900E778AE /* DataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataHelper.h; sourceTree = "<group>"; };
+		09270763141E4EC900E778AE /* DataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataHelper.m; sourceTree = "<group>"; };
+		09270765141E4F8400E778AE /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		09270766141E4F8400E778AE /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		09270768141E52BB00E778AE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0927076A141E53AB00E778AE /* AutocompleteLocationExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutocompleteLocationExample.h; sourceTree = "<group>"; };
+		0927076B141E53AB00E778AE /* AutocompleteLocationExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutocompleteLocationExample.m; sourceTree = "<group>"; };
+		0927076C141E53AB00E778AE /* AutocompleteLocationExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutocompleteLocationExample.xib; sourceTree = "<group>"; };
 		09885E901418F2E500CCE17A /* IOSBoilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSBoilerplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09885E941418F2E500CCE17A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		09885E961418F2E500CCE17A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -140,6 +171,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09270769141E52BB00E778AE /* CoreLocation.framework in Frameworks */,
+				0927075E141E4C7800E778AE /* MapKit.framework in Frameworks */,
 				09885F451419009200CCE17A /* QuartzCore.framework in Frameworks */,
 				09885EF41418F46700CCE17A /* libz.1.2.3.dylib in Frameworks */,
 				09885EF21418F44200CCE17A /* MobileCoreServices.framework in Frameworks */,
@@ -168,6 +201,8 @@
 		09885E851418F2E500CCE17A = {
 			isa = PBXGroup;
 			children = (
+				09270768141E52BB00E778AE /* CoreLocation.framework */,
+				0927075D141E4C7800E778AE /* MapKit.framework */,
 				09885F441419009200CCE17A /* QuartzCore.framework */,
 				09885EF31418F46700CCE17A /* libz.1.2.3.dylib */,
 				09885EF11418F44200CCE17A /* MobileCoreServices.framework */,
@@ -299,6 +334,17 @@
 				09885F54141909E500CCE17A /* AsyncCellImagesExample.xib */,
 				09D8BDF11419125000B25D67 /* AsyncCell.h */,
 				09D8BDF21419125000B25D67 /* AsyncCell.m */,
+				09153E14141A16CB004E138C /* VariableHeightExample.h */,
+				09153E15141A16CB004E138C /* VariableHeightExample.m */,
+				09153E16141A16CB004E138C /* VariableHeightExample.xib */,
+				09153E1A141A176C004E138C /* VariableHeightCell.h */,
+				09153E1B141A176C004E138C /* VariableHeightCell.m */,
+				09270757141E4BDF00E778AE /* DirectionsExample.h */,
+				09270758141E4BDF00E778AE /* DirectionsExample.m */,
+				09270759141E4BDF00E778AE /* DirectionsExample.xib */,
+				0927076A141E53AB00E778AE /* AutocompleteLocationExample.h */,
+				0927076B141E53AB00E778AE /* AutocompleteLocationExample.m */,
+				0927076C141E53AB00E778AE /* AutocompleteLocationExample.xib */,
 			);
 			name = Examples;
 			sourceTree = "<group>";
@@ -314,6 +360,12 @@
 				09885F47141901E700CCE17A /* DictionaryHelper.m */,
 				09885F5714190D7900CCE17A /* FastCell.h */,
 				09885F5814190D7900CCE17A /* FastCell.m */,
+				0927075F141E4E2B00E778AE /* StringHelper.h */,
+				09270760141E4E2B00E778AE /* StringHelper.m */,
+				09270762141E4EC900E778AE /* DataHelper.h */,
+				09270763141E4EC900E778AE /* DataHelper.m */,
+				09270765141E4F8400E778AE /* Place.h */,
+				09270766141E4F8400E778AE /* Place.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -411,6 +463,9 @@
 				09885F421418FFE000CCE17A /* SVProgressHUD.bundle in Resources */,
 				09885F51141903DA00CCE17A /* AsyncImageExample.xib in Resources */,
 				09885F56141909E600CCE17A /* AsyncCellImagesExample.xib in Resources */,
+				09153E18141A16CB004E138C /* VariableHeightExample.xib in Resources */,
+				0927075B141E4BDF00E778AE /* DirectionsExample.xib in Resources */,
+				0927076E141E53AB00E778AE /* AutocompleteLocationExample.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +522,13 @@
 				09885F55141909E600CCE17A /* AsyncCellImagesExample.m in Sources */,
 				09885F5914190D7900CCE17A /* FastCell.m in Sources */,
 				09D8BDF31419125000B25D67 /* AsyncCell.m in Sources */,
+				09153E17141A16CB004E138C /* VariableHeightExample.m in Sources */,
+				09153E1C141A176C004E138C /* VariableHeightCell.m in Sources */,
+				0927075A141E4BDF00E778AE /* DirectionsExample.m in Sources */,
+				09270761141E4E2B00E778AE /* StringHelper.m in Sources */,
+				09270764141E4EC900E778AE /* DataHelper.m in Sources */,
+				09270767141E4F8500E778AE /* Place.m in Sources */,
+				0927076D141E53AB00E778AE /* AutocompleteLocationExample.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,18 +1,18 @@
 //
-//  AsyncCellImagesExample.m
+//  VariableHeightExample.m
 //  IOSBoilerplate
 //
-//  Created by Alberto Gimeno Brieba on 08/09/11.
+//  Created by Alberto Gimeno Brieba on 09/09/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "AsyncCellImagesExample.h"
+#import "VariableHeightExample.h"
 #import "SVProgressHUD.h"
 #import "JSONKit.h"
 #import "DictionaryHelper.h"
-#import "AsyncCell.h"
+#import "VariableHeightCell.h"
 
-@implementation AsyncCellImagesExample
+@implementation VariableHeightExample
 
 @synthesize table;
 @synthesize results;
@@ -51,22 +51,19 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    AsyncCell *cell = (AsyncCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    VariableHeightCell *cell = (VariableHeightCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[AsyncCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[VariableHeightCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
     NSDictionary* obj = [results objectAtIndex:indexPath.row];
     [cell updateCellInfo:obj];
     return cell;
 }
-     
-- (void) imageLoaded:(UIImage*)image withURL:(NSURL*)url {
-    [self refreshCellsWithImage:image fromURL:url inTable:table];
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 58;
+    NSDictionary* obj = [results objectAtIndex:indexPath.row];
+    return [VariableHeightCell heightForCellWithInfo:obj inTable:tableView];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,7 +75,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Latest twits about #iOS";
+    self.title = @"Latest twits about #cats";
 }
 
 - (void)viewDidUnload
@@ -94,7 +91,7 @@
     [SVProgressHUD showInView:self.view];
     
     // By using [self requestWithURL:@"..."]; the reques is cancelled if the user closes this view controller
-    ASIHTTPRequest* request = [self requestWithURL:@"http://search.twitter.com/search.json?q=%23ios"];
+    ASIHTTPRequest* request = [self requestWithURL:@"http://search.twitter.com/search.json?q=%23cats"];
     [request setDidFinishSelector:@selector(requestFinished:)];
     [request setDidFailSelector:@selector(requestFailed:)];
     [request startAsynchronous];
