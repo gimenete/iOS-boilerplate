@@ -5,7 +5,7 @@ Is a code base for iOS projects. Current version provides
 
   - BaseViewController with methods for secure handling of async http requests
   - ImageManager: a class for downloading images asynchronously
-  - FastCell (inspired on [Atebits implementation](http://nickharris.wordpress.com/2010/06/17/fast-uitableviewcell-with-a-uiwebview/)) is a base class for implementing custom UITableViewCells with fast scrolling.
+  - FastCell (inspired on [Atebits implementation](http://blog.atebits.com/2008/12/fast-scrolling-in-tweetie-with-uitableview/)) is a base class for implementing custom UITableViewCells with fast scrolling.
   - DictionaryHelper: an NSDictionary helper with methods for safe handling of collections
   - StringHelper: an NSString helper with methods for manipulating NSStrings. Including: trim, sha1 and urlEncode method.
   - DataHelper: an NSData helper with one method: hexString. It is used inside StringHelper to calculate the sha1 hash hexstring representation of a given string

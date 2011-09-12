@@ -127,7 +127,7 @@
     } else if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"Variable cell height";
+                cell.textLabel.text = @"Variable-height cells";
                 cell.detailTextLabel.text = @"Implements a FastCell with variable height";
                 break;
                 
