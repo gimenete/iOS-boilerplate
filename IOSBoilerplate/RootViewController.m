@@ -13,6 +13,8 @@
 #import "VariableHeightExample.h"
 #import "DirectionsExample.h"
 #import "AutocompleteLocationExample.h"
+#import "PullDownExample.h"
+#import "SwipeableTableViewExample.h"
 
 @implementation RootViewController
 
@@ -81,7 +83,7 @@
             break;
             
         case 1:
-            return 1; // TODO: 3
+            return 3;
             break;
             
         case 2:
@@ -191,6 +193,14 @@
         switch (indexPath.row) {
             case 0:
                 vc = [[VariableHeightExample alloc] init];
+                break;
+                
+            case 1:
+                vc = [[PullDownExample alloc] init];
+                break;
+                
+            case 2:
+                vc = [[SwipeableTableViewExample alloc] init];
                 break;
                 
             default:

@@ -10,6 +10,7 @@
 
 @interface FastCell : UITableViewCell {
 
+    UIView* backView;
     UIView* contentView;
 
 }

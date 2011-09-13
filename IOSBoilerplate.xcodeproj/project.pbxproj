@@ -62,6 +62,21 @@
 		09885F56141909E600CCE17A /* AsyncCellImagesExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09885F54141909E500CCE17A /* AsyncCellImagesExample.xib */; };
 		09885F5914190D7900CCE17A /* FastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09885F5814190D7900CCE17A /* FastCell.m */; };
 		09D8BDF31419125000B25D67 /* AsyncCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D8BDF21419125000B25D67 /* AsyncCell.m */; };
+		09E442BB141F96A900AD2DAE /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442BA141F96A900AD2DAE /* EGORefreshTableHeaderView.m */; };
+		09E442C6141F970400AD2DAE /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E442BE141F970400AD2DAE /* blackArrow.png */; };
+		09E442C7141F970400AD2DAE /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E442BF141F970400AD2DAE /* blackArrow@2x.png */; };
+		09E442C8141F970400AD2DAE /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E442C0141F970400AD2DAE /* blueArrow.png */; };
+		09E442C9141F970400AD2DAE /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E442C1141F970400AD2DAE /* blueArrow@2x.png */; };
+		09E442CA141F970400AD2DAE /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E442C2141F970400AD2DAE /* grayArrow.png */; };
+		09E442CB141F970400AD2DAE /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E442C3141F970400AD2DAE /* grayArrow@2x.png */; };
+		09E442CC141F970400AD2DAE /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E442C4141F970400AD2DAE /* whiteArrow.png */; };
+		09E442CD141F970400AD2DAE /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E442C5141F970400AD2DAE /* whiteArrow@2x.png */; };
+		09E442D0141F97AE00AD2DAE /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442CF141F97AE00AD2DAE /* ListViewController.m */; };
+		09E442D4141F989200AD2DAE /* PullDownExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442D2141F989200AD2DAE /* PullDownExample.m */; };
+		09E442D5141F989200AD2DAE /* PullDownExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09E442D3141F989200AD2DAE /* PullDownExample.xib */; };
+		09E442D9141F9DD400AD2DAE /* SwipeableTableViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442D7141F9DD400AD2DAE /* SwipeableTableViewExample.m */; };
+		09E442DA141F9DD400AD2DAE /* SwipeableTableViewExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09E442D8141F9DD400AD2DAE /* SwipeableTableViewExample.xib */; };
+		09E442DD141F9E3600AD2DAE /* SwipeableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442DC141F9E3600AD2DAE /* SwipeableCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +179,26 @@
 		09885F5814190D7900CCE17A /* FastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCell.m; sourceTree = "<group>"; };
 		09D8BDF11419125000B25D67 /* AsyncCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncCell.h; sourceTree = "<group>"; };
 		09D8BDF21419125000B25D67 /* AsyncCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncCell.m; sourceTree = "<group>"; };
+		09E442B9141F96A900AD2DAE /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		09E442BA141F96A900AD2DAE /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		09E442BE141F970400AD2DAE /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		09E442BF141F970400AD2DAE /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		09E442C0141F970400AD2DAE /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		09E442C1141F970400AD2DAE /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		09E442C2141F970400AD2DAE /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		09E442C3141F970400AD2DAE /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		09E442C4141F970400AD2DAE /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		09E442C5141F970400AD2DAE /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		09E442CE141F97AE00AD2DAE /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		09E442CF141F97AE00AD2DAE /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		09E442D1141F989200AD2DAE /* PullDownExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullDownExample.h; sourceTree = "<group>"; };
+		09E442D2141F989200AD2DAE /* PullDownExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullDownExample.m; sourceTree = "<group>"; };
+		09E442D3141F989200AD2DAE /* PullDownExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullDownExample.xib; sourceTree = "<group>"; };
+		09E442D6141F9DD400AD2DAE /* SwipeableTableViewExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeableTableViewExample.h; sourceTree = "<group>"; };
+		09E442D7141F9DD400AD2DAE /* SwipeableTableViewExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeableTableViewExample.m; sourceTree = "<group>"; };
+		09E442D8141F9DD400AD2DAE /* SwipeableTableViewExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwipeableTableViewExample.xib; sourceTree = "<group>"; };
+		09E442DB141F9E3600AD2DAE /* SwipeableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeableCell.h; sourceTree = "<group>"; };
+		09E442DC141F9E3600AD2DAE /* SwipeableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeableCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +274,7 @@
 		09885E9A1418F2E600CCE17A /* IOSBoilerplate */ = {
 			isa = PBXGroup;
 			children = (
+				09E442B7141F969400AD2DAE /* RefreshTableHeaderView */,
 				09885F491419027D00CCE17A /* JSONKit */,
 				09885F3E1418FFE000CCE17A /* SVProgressHUD */,
 				09885EF61418F48F00CCE17A /* Helpers */,
@@ -259,6 +295,7 @@
 		09885E9B1418F2E600CCE17A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				09E442BC141F96E400AD2DAE /* Images */,
 				09885E9C1418F2E600CCE17A /* IOSBoilerplate-Info.plist */,
 				09885E9D1418F2E600CCE17A /* InfoPlist.strings */,
 				09885EA01418F2E600CCE17A /* main.m */,
@@ -345,6 +382,14 @@
 				0927076A141E53AB00E778AE /* AutocompleteLocationExample.h */,
 				0927076B141E53AB00E778AE /* AutocompleteLocationExample.m */,
 				0927076C141E53AB00E778AE /* AutocompleteLocationExample.xib */,
+				09E442D1141F989200AD2DAE /* PullDownExample.h */,
+				09E442D2141F989200AD2DAE /* PullDownExample.m */,
+				09E442D3141F989200AD2DAE /* PullDownExample.xib */,
+				09E442D6141F9DD400AD2DAE /* SwipeableTableViewExample.h */,
+				09E442D7141F9DD400AD2DAE /* SwipeableTableViewExample.m */,
+				09E442D8141F9DD400AD2DAE /* SwipeableTableViewExample.xib */,
+				09E442DB141F9E3600AD2DAE /* SwipeableCell.h */,
+				09E442DC141F9E3600AD2DAE /* SwipeableCell.m */,
 			);
 			name = Examples;
 			sourceTree = "<group>";
@@ -366,6 +411,8 @@
 				09270763141E4EC900E778AE /* DataHelper.m */,
 				09270765141E4F8400E778AE /* Place.h */,
 				09270766141E4F8400E778AE /* Place.m */,
+				09E442CE141F97AE00AD2DAE /* ListViewController.h */,
+				09E442CF141F97AE00AD2DAE /* ListViewController.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -387,6 +434,30 @@
 				09885F4B1419028D00CCE17A /* JSONKit.m */,
 			);
 			name = JSONKit;
+			sourceTree = "<group>";
+		};
+		09E442B7141F969400AD2DAE /* RefreshTableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				09E442B9141F96A900AD2DAE /* EGORefreshTableHeaderView.h */,
+				09E442BA141F96A900AD2DAE /* EGORefreshTableHeaderView.m */,
+			);
+			name = RefreshTableHeaderView;
+			sourceTree = "<group>";
+		};
+		09E442BC141F96E400AD2DAE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				09E442BE141F970400AD2DAE /* blackArrow.png */,
+				09E442BF141F970400AD2DAE /* blackArrow@2x.png */,
+				09E442C0141F970400AD2DAE /* blueArrow.png */,
+				09E442C1141F970400AD2DAE /* blueArrow@2x.png */,
+				09E442C2141F970400AD2DAE /* grayArrow.png */,
+				09E442C3141F970400AD2DAE /* grayArrow@2x.png */,
+				09E442C4141F970400AD2DAE /* whiteArrow.png */,
+				09E442C5141F970400AD2DAE /* whiteArrow@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,6 +537,16 @@
 				09153E18141A16CB004E138C /* VariableHeightExample.xib in Resources */,
 				0927075B141E4BDF00E778AE /* DirectionsExample.xib in Resources */,
 				0927076E141E53AB00E778AE /* AutocompleteLocationExample.xib in Resources */,
+				09E442C6141F970400AD2DAE /* blackArrow.png in Resources */,
+				09E442C7141F970400AD2DAE /* blackArrow@2x.png in Resources */,
+				09E442C8141F970400AD2DAE /* blueArrow.png in Resources */,
+				09E442C9141F970400AD2DAE /* blueArrow@2x.png in Resources */,
+				09E442CA141F970400AD2DAE /* grayArrow.png in Resources */,
+				09E442CB141F970400AD2DAE /* grayArrow@2x.png in Resources */,
+				09E442CC141F970400AD2DAE /* whiteArrow.png in Resources */,
+				09E442CD141F970400AD2DAE /* whiteArrow@2x.png in Resources */,
+				09E442D5141F989200AD2DAE /* PullDownExample.xib in Resources */,
+				09E442DA141F9DD400AD2DAE /* SwipeableTableViewExample.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +610,11 @@
 				09270764141E4EC900E778AE /* DataHelper.m in Sources */,
 				09270767141E4F8500E778AE /* Place.m in Sources */,
 				0927076D141E53AB00E778AE /* AutocompleteLocationExample.m in Sources */,
+				09E442BB141F96A900AD2DAE /* EGORefreshTableHeaderView.m in Sources */,
+				09E442D0141F97AE00AD2DAE /* ListViewController.m in Sources */,
+				09E442D4141F989200AD2DAE /* PullDownExample.m in Sources */,
+				09E442D9141F9DD400AD2DAE /* SwipeableTableViewExample.m in Sources */,
+				09E442DD141F9E3600AD2DAE /* SwipeableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

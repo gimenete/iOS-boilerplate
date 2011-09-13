@@ -24,6 +24,10 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+        backView = [[UIView alloc] initWithFrame:CGRectZero];
+        backView.opaque = YES;
+        [self addSubview:backView];
+        
 		contentView = [[ContentView alloc] initWithFrame:CGRectZero];
 		contentView.opaque = YES;
 		[self addSubview:contentView];
@@ -32,6 +36,9 @@
 }
 
 - (void)dealloc {
+	[backView removeFromSuperview];
+	[backView release];
+    
 	[contentView removeFromSuperview];
 	[contentView release];
 	[super dealloc];
@@ -42,12 +49,14 @@
 	CGRect b = [self bounds];
 	b.size.height -= 1; // leave room for the seperator line
 	
+    [backView setFrame:b];
 	[contentView setFrame:b];
     [self setNeedsDisplay];
 }
 
 - (void)setNeedsDisplay {
 	[super setNeedsDisplay];
+    [backView setNeedsDisplay];
 	[contentView setNeedsDisplay];
 }
 
