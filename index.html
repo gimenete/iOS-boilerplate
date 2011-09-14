@@ -1,1 +1,291 @@
-My GitHub Page
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>iOS Boilerplate - A base template for iOS apps</title>
+	<!--
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<meta name="robots" content="">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	-->
+
+	<link rel="stylesheet" href="./css/bootstrap-1.1.0.min.css">
+
+</head>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container fixed">
+          <h3><a href="index.html">iOS Boilerplate</a></h3>
+          <ul>
+            <li class="active"><a href="#">Start</a></li>
+            <li><a href="#">HTTP requests</a></li>
+            <li><a href="#">UITableView and cells</a></li>
+            <li><a href="#">Maps</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+		<br><br><br>
+		
+			<div class="page-header">
+				<h1>Introducing iOS Boilerplate <small>A base template for iOS apps</small></h1>
+			</div>
+			
+			<div class="row">
+			    <div class="span6 columns">
+			      <h2>What is it?</h2>
+			      <p>This project is inspired on <a href="html5boilerplate.com">HTML5 boilerplate</a>.</p>
+					<ul>
+						<li>It is intended to provide a base of code to start with</li>
+						<li>It is not intended to be a freamwork</li>
+						<li>It is intented to be modified and extended by the developer to fit their needs</li>
+						<li>It includes solid third-party libraries if needed to not reinvent the wheel</li>
+					</ul>
+					<p><a class="btn primary large" href="https://github.com/gimenete/iOS-boilerplate">Download it now!</a></p>
+			    </div>
+				<div class="span5 columns">
+			      <h3>What is supported</h3>
+					<p>
+						iOS Boilerplate is tested on iPhone / iPod Touch devices with iOS 4.0 or greater.
+						In a future it maight support universal applications (iPhone + iPad)
+					</p>
+					<p>
+						At this moment iOS Boilerplate is just an XCode project. Is planned to be released
+						as a true XCode template in a near fuutre.
+					</p>
+				</div>
+			    <div class="span5 columns">
+			      <h3>What's included</h3>
+			      <p>iOS Boilerplate includes helper classes and examples about the following topics:</p>
+			      <ul>
+			        <li>HTTP requests and an image cache (both in-memory and disk-based)</li>
+			        <li>UITableViews and UITableViewCells: fast scrolling, async images, pull-down-to-refresh, swipeable cells,...</li>
+			        <li>Maps and locations: directions between two points, autocomplete a location, etc.</li>
+			      </ul>
+			    </div>
+			  </div>
+			
+			
+			<br>
+			<div class="row">
+				<div class="span9 columns">
+					<div class="page-header">
+						<h2>HTTP requests</h2>
+					</div>
+					<p>
+						iOS Boilerplate includes <a href="http://allseeing-i.com/ASIHTTPRequest/">ASIHTTPRequest</a>,
+						a great library for handling HTTP requests. However, iOS Boilerplate also includes a
+						BaseViewController class you can use to prevent some problems with async requests.
+					</p>
+					<p>By using any of these:</p>
+					<pre>- (ASIHTTPRequest*) requestWithURL:(NSString*)url;</code>
+- (ASIFormDataRequest*) formRequestWithURL:(NSString*)url;</code></pre>
+				
+					<p>
+						The returned request objects are automatically cancelled when the ViewController is deallocated.
+						This saves resources and prevents the request to call any delegate already deallocated when it is finished.
+					</p>
+				
+					<p>You can also cancel manually any running request by using <code>- (void) cancelRequests;</code></p>
+			
+					<div class="page-header">
+						<h2>ImageManager</h2>
+					</div>
+					<p>
+						The <code>ImageManager</code> class provides methods for caching and loading images asynchronously.
+						It uses ASIHTTPRequest and <code>NSOperation</code> for the async stuff. It holds an in-memory cache,
+						and with minor modifications (see comented code in that class) an on-disk cache can be used. The
+						code is commented because you should choose the best cache policy for your needs.
+					</p>
+					<p>
+						You start loading an image by calling <code>+ (UIImage*)loadImage:(NSURL *)url;</code>. If the
+						image can be loaded from cache it is returned. Otherwise <code>nil</code> is returned.
+					</p>
+					<p>
+						When an image is loaded all ViewControllers implementing a method with this signature are called:
+					</p>
+					<pre>- (void)imageLoaded:(UIImage*)image withURL:(NSURL*)_url</pre>
+					<p>
+						Since any ViewController will be notified about any image loaded you must remember the URL of
+						the image to ensure that that's the image you are interested in. See
+						<a href="https://github.com/gimenete/iOS-boilerplate/blob/master/IOSBoilerplate/AsyncImageExample.m">AsyncImageExample.m</a> for better understanding.
+					</p>
+					<p>
+						If you are interested in loading async images in a UITableView you can use this code:
+					</p>
+					<pre>- (void) imageLoaded:(UIImage*)image withURL:(NSURL*)url {
+		[self refreshCellsWithImage:image fromURL:url inTable:table];
+	}</pre>
+					<p>
+						The method <code>refreshCellsWithImage:fromURL:inTable:</code> is defined inside
+						<code>BaseViewController</code>. It will iterate over the visible cells an will call
+						<code>+ (UIImage*)loadImage:(NSURL *)url;</code> on those images that implement it.
+					</p>
+					<p>
+						For a complete example about async images inside UITableViewCells see
+						<a href="https://github.com/gimenete/iOS-boilerplate/blob/master/IOSBoilerplate/AsyncCellImagesExample.m">AsyncCellImagesExample.m</a>
+					</p>
+				</div>
+				<div class="span4 columns">
+					<img src="img/async-images.png">
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span9 columns">
+					<div class="page-header">
+						<h2>UITableView &amp; cells</h2>
+					</div>
+
+					<h3>FastCells</h3>
+					<p>Inspired on <a href="http://blog.atebits.com/2008/12/fast-scrolling-in-tweetie-with-uitableview/">this article of Atebits</a>
+						iOS Boilerplate includes a base class for implementing cells with fast scrolling. The base class is
+						<code>FastCell</code>. There are some examples that extend this class. See
+						<code>AsyncCellImagesExample</code>, <code>VariableHeightExample</code> and
+						<code>SwipeableTableCellExample</code>.
+					</p>
+
+					<h3>Pull-down-to-refresh</h3>
+					<p>
+						iOS Boilerplate includes <a href="https://github.com/enormego/EGOTableViewPullRefresh">EGOTableViewPullRefresh</a> but simplifies its use.
+						You can extend <code>ListViewController</code>.
+					</p>
+					<pre>// This is the core method you should implement
+- (void)reloadTableViewDataSource {
+	_reloading = YES;
+
+    // Here you would make an HTTP request or something like that
+    // Call [self doneLoadingTableViewData] when you are done
+    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
+}</pre>
+					<p>
+						You just need to implement something like the above code and initializate the
+						<code>self.table</code> object. You can initializate it with InterfaceBuilder
+						(drop a UITableView component and make the link between the outlet and the component).
+						You should also implement at least the UITableViewDataSource protocol.
+						For a complete example see <code>PullDownExample</code>.
+					</p>
+				
+					<h3>Swipeable classes</h3>
+					<p>
+						Threre is an example of how to implement a swipeable UITableViewCell extending
+						<code>FastCell</code>. Some code is also needed in the ViewController. See
+						<code>SwipeableTableViewExample</code> for a complete example.
+					</p>
+				</div>
+				<div class="span4 columns">
+					<img src="img/pull-down.png">
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span9 columns">
+					<div class="page-header">
+						<h2>Maps &amp; locations</h2>
+					</div>
+					
+					<h3>Place.m</h3>
+					<p>
+						This class is just a simple implementation of the <code>MKAnnotation</code> protocol.
+					</p>
+				
+					<h3>Directions</h3>
+					<p>
+						There is an example of how to calculate the directions between two points using the
+						Google Maps API and showing it on a <code>MKMapView</code> using map overlays.
+						See <code>DirectionsExample.m</code>.
+					</p>
+
+					<h3>Autocomplete locations</h3>
+					<p>
+						There is an example of how to autocomplete locations using the
+						Google Maps API.
+						See <code>AutocompleteLocationExample.m</code>.
+					</p>
+					
+					<br>
+					<img src="img/autocomplete.png">
+					
+				</div>
+				<div class="span4 columns">
+					<img src="img/directions.png">
+				</div>
+			</div>
+
+			
+			<div class="page-header">
+				<h2>Other things included</h2>
+			</div>
+			<div class="row">
+				<h3>JSONKit</h3>
+				<p>
+					iOS Boilerplate includes <a href="https://github.com/johnezang/JSONKit">JSONKit</a> that is
+					a fast library for generating and parsing JSON documents.
+				</p>
+				
+				<h3>SVProgressHUD</h3>
+				<p>
+					iOS Boilerplate includes <a href="https://github.com/samvermette/SVProgressHUD">SVProgressHUD</a> that is
+					a simple-to-use HUD component. It is used in <code>HTTPHUDExample</code>
+				</p>
+				
+				<h3>DictionaryHelper</h3>
+				<p>
+					This helper class adds some methods to the <code>NSDictionary</code> class. These methods
+					are usful for safe manipulation of data.
+				</p>
+				<pre>- (NSString*) stringForKey:(id)key;
+- (NSNumber*) numberForKey:(id)key;
+- (NSMutableDictionary*) dictionaryForKey:(id)key;
+- (NSMutableArray*) arrayForKey:(id)key;</pre>
+
+				<p>
+					These method ensure that the object retrived is of the desired type, otherwise return <code>nil</code>.
+					Also <code>NSNull</code> is never returned. These methods are very useful when manipulating
+					objects returned by JSONKit or any other JSON library.
+				</p>
+				
+				<h3>StringHelper</h3>
+				<p>
+					This helper class adds some methods to the <code>NSString</code> class. The most useful are:
+				</p>
+				<p>
+					<code>- (NSString*)trim;</code> returns the original NSString but without white spaces at
+					the begining or at the end.
+				</p>
+				<p>
+					<code>- (NSString*)urlEncode;</code> url-encodes the original NSString.
+				</p>
+				<p>
+					<code>- (NSString*)sha1;</code> calculates the SHA1 of the given NSString.
+				</p>
+
+				<h3>DataHelper</h3>
+				<p>
+					This helper class adds one method to the <code>NSData</code> class. This method is
+					<code>- (NSString*)hexString;</code> and returns a NSString in hexadecimal representing
+					the content of the original <code>NSData</code> object.
+				</p>
+			</div>
+
+
+      <footer>
+        <p>iOS Boilerplate is developed and maintained by <a href="http://twitter.com/gimenete">@gimenete</a></p>
+      </footer>
+
+    </div>
+
+</body>
+</html>
