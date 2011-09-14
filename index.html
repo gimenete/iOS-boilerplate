@@ -49,8 +49,8 @@
 			      <p>This project is inspired on <a href="html5boilerplate.com">HTML5 boilerplate</a>.</p>
 					<ul>
 						<li>It is intended to provide a base of code to start with</li>
-						<li>It is not intended to be a freamwork</li>
-						<li>It is intented to be modified and extended by the developer to fit their needs</li>
+						<li>It is not intended to be a framework</li>
+						<li>It is intended to be modified and extended by the developer to fit their needs</li>
 						<li>It includes solid third-party libraries if needed to not reinvent the wheel</li>
 					</ul>
 					<p><a class="btn primary large" href="https://github.com/gimenete/iOS-boilerplate">Download it now!</a></p>
@@ -59,11 +59,11 @@
 			      <h3>What is supported</h3>
 					<p>
 						iOS Boilerplate is tested on iPhone / iPod Touch devices with iOS 4.0 or greater.
-						In a future it maight support universal applications (iPhone + iPad)
+						In a future it might support universal applications (iPhone + iPad)
 					</p>
 					<p>
 						At this moment iOS Boilerplate is just an XCode project. Is planned to be released
-						as a true XCode template in a near fuutre.
+						as a true XCode template in a near future.
 					</p>
 				</div>
 			    <div class="span5 columns">
@@ -106,7 +106,7 @@
 					<p>
 						The <code>ImageManager</code> class provides methods for caching and loading images asynchronously.
 						It uses ASIHTTPRequest and <code>NSOperation</code> for the async stuff. It holds an in-memory cache,
-						and with minor modifications (see comented code in that class) an on-disk cache can be used. The
+						and with minor modifications (see commented code in that class) an on-disk cache can be used. The
 						code is commented because you should choose the best cache policy for your needs.
 					</p>
 					<p>
@@ -173,8 +173,8 @@
     [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
 }</pre>
 					<p>
-						You just need to implement something like the above code and initializate the
-						<code>self.table</code> object. You can initializate it with InterfaceBuilder
+						You just need to implement something like the above code and initialize the
+						<code>self.table</code> object. You can initialize it with InterfaceBuilder
 						(drop a UITableView component and make the link between the outlet and the component).
 						You should also implement at least the UITableViewDataSource protocol.
 						For a complete example see <code>PullDownExample</code>.
@@ -182,7 +182,7 @@
 				
 					<h3>Swipeable classes</h3>
 					<p>
-						Threre is an example of how to implement a swipeable UITableViewCell extending
+						There is an example of how to implement a swipeable UITableViewCell extending
 						<code>FastCell</code>. Some code is also needed in the ViewController. See
 						<code>SwipeableTableViewExample</code> for a complete example.
 					</p>
@@ -258,7 +258,7 @@
 - (NSMutableArray*) arrayForKey:(id)key;</pre>
 
 				<p>
-					These method ensure that the object retrived is of the desired type, otherwise return <code>nil</code>.
+					These method ensure that the object retrieved is of the desired type, otherwise return <code>nil</code>.
 					Also <code>NSNull</code> is never returned. These methods are very useful when manipulating
 					objects returned by JSONKit or any other JSON library.
 				</p>
@@ -269,7 +269,7 @@
 				</p>
 				<p>
 					<code>- (NSString*)trim;</code> returns the original NSString but without white spaces at
-					the begining or at the end.
+					the beginning or at the end.
 				</p>
 				<p>
 					<code>- (NSString*)urlEncode;</code> url-encodes the original NSString.
