@@ -45,8 +45,8 @@
         [b setTitle:@"Hi there!" forState:UIControlStateNormal];
         [b setTitle:@"Hi there!" forState:UIControlStateHighlighted];
         [b setTitle:@"Hi there!" forState:UIControlStateSelected];
-        [backView addSubview:b];
-        backView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [self.backView addSubview:b];
+        self.backView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
         [b addTarget:self action:@selector(doSomething) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -109,10 +109,10 @@ static UIFont* bold22 = nil;
         swipe = YES;
         [UIView beginAnimations:@"" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        CGRect frame = contentView.frame;
+        CGRect frame = self.contentView.frame;
         // this makes visible just 10 points of the contentView
-        frame.origin.x = contentView.frame.size.width - 10;
-        contentView.frame = frame;
+        frame.origin.x = self.contentView.frame.size.width - 10;
+        self.contentView.frame = frame;
         [UIView commitAnimations];
     } else if (swipe) {
         // swipe finished
@@ -120,9 +120,9 @@ static UIFont* bold22 = nil;
         
         [UIView beginAnimations:@"" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        CGRect frame = contentView.frame;
+        CGRect frame = self.contentView.frame;
         frame.origin.x = 0;
-        contentView.frame = frame;
+        self.contentView.frame = frame;
         [UIView commitAnimations];
     }
     

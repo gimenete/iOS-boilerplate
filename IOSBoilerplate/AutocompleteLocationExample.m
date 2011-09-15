@@ -159,7 +159,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	self.searchDisplayController.searchBar.hidden = YES;
 	[self.searchDisplayController setActive:NO animated:YES];
 	
 	Place* suggestion = [suggestions objectAtIndex:indexPath.row];

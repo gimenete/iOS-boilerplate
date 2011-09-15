@@ -30,10 +30,11 @@
 
 @interface FastCell : UITableViewCell {
 
-    UIView* backView;
-    UIView* contentView;
-
 }
+
+@property (nonatomic, retain) UIView* backView;
+@property (nonatomic, retain) UIView* contentView;
+
 
 - (void) drawContentView:(CGRect)r;
 
