@@ -35,7 +35,7 @@
 		} else {
 			pin.pinColor = MKPinAnnotationColorRed;
 		}
-		return pin;
+		return [pin autorelease];
 	}
 	return nil;
 }
