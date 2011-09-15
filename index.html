@@ -131,7 +131,7 @@
 					<p>
 						The method <code>refreshCellsWithImage:fromURL:inTable:</code> is defined inside
 						<code>BaseViewController</code>. It will iterate over the visible cells an will call
-						<code>+ (UIImage*)loadImage:(NSURL *)url;</code> on those images that implement it.
+						<code>- (void) imageLoaded:(UIImage*)image withURL:(NSURL*)url</code> on those cells that implement it.
 					</p>
 					<p>
 						For a complete example about async images inside UITableViewCells see
