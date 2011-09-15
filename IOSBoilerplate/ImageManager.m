@@ -116,10 +116,10 @@ static ImageManager *sharedSingleton;
 		return;
 	}
 	
-	// NSLog(@"image done. %@ cached = %d", request.url, [request didUseCachedResponse]);
+	// NSLog(@"image done. %@ cached = %d", request.originalURL, [request didUseCachedResponse]);
 	
-	[pendingImages removeObject:request.url];
-	[loadedImages setObject:image forKey:request.url];
+	[pendingImages removeObject:request.originalURL];
+	[loadedImages setObject:image forKey:request.originalURL];
 	
 	SEL selector = @selector(imageLoaded:withURL:);
 	NSArray* viewControllers = nil;
@@ -130,14 +130,14 @@ static ImageManager *sharedSingleton;
 	
 	for (UIViewController* vc in viewControllers) {
 		if ([vc respondsToSelector:selector]) {
-			[vc performSelector:selector withObject:image withObject:request.url];
+			[vc performSelector:selector withObject:image withObject:request.originalURL];
 		}
 	}
 }
 
 - (void)imageWentWrong:(ASIHTTPRequest*)request {
 	NSLog(@"image went wrong %@", [[request error] localizedDescription]);
-	[pendingImages removeObject:request.url]; // TODO should not try to load the image again for a while
+	[pendingImages removeObject:request.originalURL]; // TODO should not try to load the image again for a while
 }
 
 + (void) clearMemoryCache {
