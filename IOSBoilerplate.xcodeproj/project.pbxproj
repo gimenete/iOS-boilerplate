@@ -77,6 +77,7 @@
 		09E442D9141F9DD400AD2DAE /* SwipeableTableViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442D7141F9DD400AD2DAE /* SwipeableTableViewExample.m */; };
 		09E442DA141F9DD400AD2DAE /* SwipeableTableViewExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09E442D8141F9DD400AD2DAE /* SwipeableTableViewExample.xib */; };
 		09E442DD141F9E3600AD2DAE /* SwipeableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442DC141F9E3600AD2DAE /* SwipeableCell.m */; };
+		87575B33142457A2006074BA /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87575B31142457A2006074BA /* MainWindow-iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +200,7 @@
 		09E442D8141F9DD400AD2DAE /* SwipeableTableViewExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwipeableTableViewExample.xib; sourceTree = "<group>"; };
 		09E442DB141F9E3600AD2DAE /* SwipeableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeableCell.h; sourceTree = "<group>"; };
 		09E442DC141F9E3600AD2DAE /* SwipeableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeableCell.m; sourceTree = "<group>"; };
+		87575B32142457A2006074BA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 		09885E9A1418F2E600CCE17A /* IOSBoilerplate */ = {
 			isa = PBXGroup;
 			children = (
+				87575B301424579D006074BA /* iPad */,
 				09E442B7141F969400AD2DAE /* RefreshTableHeaderView */,
 				09885F491419027D00CCE17A /* JSONKit */,
 				09885F3E1418FFE000CCE17A /* SVProgressHUD */,
@@ -460,6 +463,14 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		87575B301424579D006074BA /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				87575B31142457A2006074BA /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -547,6 +558,7 @@
 				09E442CD141F970400AD2DAE /* whiteArrow@2x.png in Resources */,
 				09E442D5141F989200AD2DAE /* PullDownExample.xib in Resources */,
 				09E442DA141F9DD400AD2DAE /* SwipeableTableViewExample.xib in Resources */,
+				87575B33142457A2006074BA /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,6 +681,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		87575B31142457A2006074BA /* MainWindow-iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87575B32142457A2006074BA /* en */,
+			);
+			name = "MainWindow-iPad.xib";
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -721,8 +741,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IOSBoilerplate/IOSBoilerplate-Prefix.pch";
 				INFOPLIST_FILE = "IOSBoilerplate/IOSBoilerplate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -733,8 +754,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IOSBoilerplate/IOSBoilerplate-Prefix.pch";
 				INFOPLIST_FILE = "IOSBoilerplate/IOSBoilerplate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
