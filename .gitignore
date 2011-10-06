@@ -5,6 +5,7 @@
 build/
 
 *.pbxuser
+*.xcworkspace
 *.perspective
 *.perspectivev3
 *.mode1v3
