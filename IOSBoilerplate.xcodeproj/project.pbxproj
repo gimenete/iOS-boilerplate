@@ -46,7 +46,6 @@
 		09885EED1418F3F900CCE17A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09885EEC1418F3F900CCE17A /* CFNetwork.framework */; };
 		09885EEF1418F40200CCE17A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09885EEE1418F40200CCE17A /* SystemConfiguration.framework */; };
 		09885EF21418F44200CCE17A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09885EF11418F44200CCE17A /* MobileCoreServices.framework */; };
-		09885EF41418F46700CCE17A /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 09885EF31418F46700CCE17A /* libz.1.2.3.dylib */; };
 		09885EF91418F4AB00CCE17A /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09885EF81418F4AB00CCE17A /* BaseViewController.m */; };
 		09885F381418F73A00CCE17A /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09885F371418F73A00CCE17A /* ImageManager.m */; };
 		09885F3C1418FC6F00CCE17A /* HTTPHUDExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 09885F3A1418FC6E00CCE17A /* HTTPHUDExample.m */; };
@@ -77,6 +76,7 @@
 		09E442D9141F9DD400AD2DAE /* SwipeableTableViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442D7141F9DD400AD2DAE /* SwipeableTableViewExample.m */; };
 		09E442DA141F9DD400AD2DAE /* SwipeableTableViewExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09E442D8141F9DD400AD2DAE /* SwipeableTableViewExample.xib */; };
 		09E442DD141F9E3600AD2DAE /* SwipeableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442DC141F9E3600AD2DAE /* SwipeableCell.m */; };
+		C37BC8E4144C340600423D44 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C37BC8E3144C340600423D44 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,9 +151,7 @@
 		09885EEA1418F3DA00CCE17A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		09885EEC1418F3F900CCE17A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		09885EEE1418F40200CCE17A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		09885EF01418F43700CCE17A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		09885EF11418F44200CCE17A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		09885EF31418F46700CCE17A /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		09885EF71418F4AB00CCE17A /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		09885EF81418F4AB00CCE17A /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		09885F361418F73A00CCE17A /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
@@ -199,6 +197,7 @@
 		09E442D8141F9DD400AD2DAE /* SwipeableTableViewExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwipeableTableViewExample.xib; sourceTree = "<group>"; };
 		09E442DB141F9E3600AD2DAE /* SwipeableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeableCell.h; sourceTree = "<group>"; };
 		09E442DC141F9E3600AD2DAE /* SwipeableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeableCell.m; sourceTree = "<group>"; };
+		C37BC8E3144C340600423D44 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,10 +205,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C37BC8E4144C340600423D44 /* libz.dylib in Frameworks */,
 				09270769141E52BB00E778AE /* CoreLocation.framework in Frameworks */,
 				0927075E141E4C7800E778AE /* MapKit.framework in Frameworks */,
 				09885F451419009200CCE17A /* QuartzCore.framework in Frameworks */,
-				09885EF41418F46700CCE17A /* libz.1.2.3.dylib in Frameworks */,
 				09885EF21418F44200CCE17A /* MobileCoreServices.framework in Frameworks */,
 				09885E991418F2E600CCE17A /* CoreGraphics.framework in Frameworks */,
 				09885EEF1418F40200CCE17A /* SystemConfiguration.framework in Frameworks */,
@@ -236,14 +235,6 @@
 		09885E851418F2E500CCE17A = {
 			isa = PBXGroup;
 			children = (
-				09270768141E52BB00E778AE /* CoreLocation.framework */,
-				0927075D141E4C7800E778AE /* MapKit.framework */,
-				09885F441419009200CCE17A /* QuartzCore.framework */,
-				09885EF31418F46700CCE17A /* libz.1.2.3.dylib */,
-				09885EF11418F44200CCE17A /* MobileCoreServices.framework */,
-				09885EF01418F43700CCE17A /* CoreGraphics.framework */,
-				09885EEE1418F40200CCE17A /* SystemConfiguration.framework */,
-				09885EEC1418F3F900CCE17A /* CFNetwork.framework */,
 				09885E9A1418F2E600CCE17A /* IOSBoilerplate */,
 				09885EBC1418F2E600CCE17A /* IOSBoilerplateTests */,
 				09885E931418F2E500CCE17A /* Frameworks */,
@@ -263,10 +254,17 @@
 		09885E931418F2E500CCE17A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				09885E941418F2E500CCE17A /* UIKit.framework */,
+				C37BC8E3144C340600423D44 /* libz.dylib */,
+				09885EEC1418F3F900CCE17A /* CFNetwork.framework */,
+				09270768141E52BB00E778AE /* CoreLocation.framework */,
 				09885E961418F2E500CCE17A /* Foundation.framework */,
-				09885E981418F2E600CCE17A /* CoreGraphics.framework */,
+				0927075D141E4C7800E778AE /* MapKit.framework */,
+				09885EF11418F44200CCE17A /* MobileCoreServices.framework */,
+				09885F441419009200CCE17A /* QuartzCore.framework */,
 				09885EB51418F2E600CCE17A /* SenTestingKit.framework */,
+				09885EEE1418F40200CCE17A /* SystemConfiguration.framework */,
+				09885E941418F2E500CCE17A /* UIKit.framework */,
+				09885E981418F2E600CCE17A /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
