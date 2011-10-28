@@ -30,6 +30,7 @@
 #import "SVProgressHUD.h"
 #import "JSONKit.h"
 #import "DictionaryHelper.h"
+#import "AFJSONRequestOperation.h"
 
 @implementation HTTPHUDExample
 
@@ -70,32 +71,29 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     [SVProgressHUD showInView:self.view];
     
-    // By using [self requestWithURL:@"..."]; the reques is cancelled if the user closes this view controller
-    ASIHTTPRequest* request = [self requestWithURL:@"http://api.twitter.com/1/statuses/show.json?id=111529655042965504&include_entities=false"];
-    [request setDidFinishSelector:@selector(requestFinished:)];
-    [request setDidFailSelector:@selector(requestFailed:)];
-    [request startAsynchronous];
-}
-
-- (void)requestFinished:(ASIHTTPRequest*)request {
-    [SVProgressHUD dismissWithSuccess:@"Ok!"];
-    
-    NSDictionary* result = [[request responseString] objectFromJSONString];
-    NSString* text = [result stringForKey:@"text"]; // method from DictionaryHelper
-    label.text = text;
-}
-
-- (void)requestFailed:(ASIHTTPRequest*)request {
-    [SVProgressHUD dismissWithError:[[request error] localizedDescription]];
+    NSURLRequest *request = [self requestWithURL:@"http://api.twitter.com/1/statuses/show.json?id=125372508387024896&include_entities=false"];
+    [self jsonRequest:request
+              success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                  label.text = [JSON valueForKeyPath:@"text"];
+                  [SVProgressHUD dismissWithSuccess:@"Ok!"];
+              }
+              failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                  label.text = @"error";
+                  [SVProgressHUD dismissWithError:[error localizedDescription]];
+              }
+     ];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
-
 
 - (void)dealloc {
     [label release];

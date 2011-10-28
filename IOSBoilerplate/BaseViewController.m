@@ -33,63 +33,59 @@
 #pragma mark -
 #pragma mark HTTP requests
 
-- (ASIHTTPRequest*) requestWithURL:(NSString*) s {
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:s]];
-	[self addRequest:request];
-	return request;
+- (NSURLRequest*) requestWithURL:(NSString*)urlString {
+    return [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 }
 
-- (ASIFormDataRequest*) formRequestWithURL:(NSString*) s {
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:s]];
-	[self addRequest:request];
-	return request;
+- (NSMutableURLRequest*) mutableRequestWithURL:(NSString*)urlString {
+    return [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 }
 
-- (void) addRequest:(ASIHTTPRequest*)request {
-	[request setDelegate:self];
-	if (!requests) {
-		requests = [[NSMutableArray alloc] initWithCapacity:3];
-	} else {
-		[self clearFinishedRequests];
-	}
-	[requests addObject:request];
+- (AFImageRequestOperation*) imageRequest:(NSURLRequest *)urlRequest
+                                 success:(void (^)(UIImage *image))success {
+    
+    AFImageRequestOperation* operation = [AFImageRequestOperation imageRequestOperationWithRequest:urlRequest success:success];
+    [self queueOperation:operation];
+    return operation;
 }
 
-- (void) clearFinishedRequests {
-	NSMutableArray* toremove = [[NSMutableArray alloc] initWithCapacity:[requests count]];
-	for (ASIHTTPRequest* r in requests) {
-		if ([r isFinished]) {
-			[toremove addObject:r];
-		}
-	}
-	
-	for (ASIHTTPRequest* r in toremove) {
-		[requests removeObject:r];
-	}
-	[toremove release];
+- (AFJSONRequestOperation*) jsonRequest:(NSURLRequest *)urlRequest
+                                success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))success
+                                failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure {
+
+    AFJSONRequestOperation* operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:urlRequest success:success failure:failure];
+    operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
+    [self queueOperation:operation];
+    return operation;
 }
 
-- (void) cancelRequests {
-	for (ASIHTTPRequest* r in requests) {
-		r.delegate = nil;
-		[r cancel];
-	}	
-	[requests removeAllObjects];
+- (AFXMLRequestOperation*) xmlRequest:(NSURLRequest *)urlRequest
+                              success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *XMLParser))success
+                              failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure {
+    
+    AFXMLRequestOperation* operation = [AFXMLRequestOperation XMLParserRequestOperationWithRequest:urlRequest success:success failure:failure];
+    [self queueOperation:operation];
+    return operation;
 }
 
-- (void) refreshCellsWithImage:(UIImage*)image fromURL:(NSURL*)url inTable:(UITableView*)tableView {
-    NSArray *cells = [tableView visibleCells];
-    [cells retain];
-    SEL selector = @selector(imageLoaded:withURL:);
-    for (int i = 0; i < [cells count]; i++) {
-		UITableViewCell* c = [[cells objectAtIndex: i] retain];
-        if ([c respondsToSelector:selector]) {
-            [c performSelector:selector withObject:image withObject:url];
-        }
-        [c release];
-		c = nil;
+- (AFHTTPRequestOperation *)simpleRequest:(NSURLRequest *)urlRequest
+                                                    success:(void (^)(id object))success 
+                                                    failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure {
+    AFHTTPRequestOperation* operation = [AFHTTPRequestOperation HTTPRequestOperationWithRequest:urlRequest success:success failure:failure];
+    [self queueOperation:operation];
+    return operation;
+}
+
+
+- (void) queueOperation:(NSOperation*)operation {
+    if (!queue) {
+        queue = [[NSOperationQueue alloc] init];
     }
-    [cells release];
+    [queue addOperation:operation];
+}
+
+- (void) cancelOperations {
+    [queue cancelAllOperations];
 }
 
 #pragma mark -
@@ -107,7 +103,7 @@
 #pragma mark Memory management
 
 - (void)dealloc {
-	[self cancelRequests];
+	[self cancelOperations];
 	[requests release];
 	
     [super dealloc];

@@ -27,8 +27,9 @@
 //  
 
 #import "ImageManager.h"
-#import "ASIHTTPRequest.h"
 #import "IOSBoilerplateAppDelegate.h"
+#import "AFImageRequestOperation.h"
+#import "AFImageCache.h"
 
 @implementation ImageManager
 
@@ -36,8 +37,6 @@
 {
     self = [super init];
     if (self) {
-        pendingImages = [[NSMutableArray alloc] initWithCapacity:10];
-        loadedImages = [[NSMutableDictionary alloc] initWithCapacity:50];
         downloadQueue = [[NSOperationQueue alloc] init];
         [downloadQueue setMaxConcurrentOperationCount:3];
     }
@@ -46,10 +45,7 @@
 }
 
 - (void)dealloc {
-    [pendingImages release];
-    [loadedImages release];
     [downloadQueue release];
-    [cache release];
     
     [super dealloc];
 }
@@ -64,80 +60,30 @@ static ImageManager *sharedSingleton;
     }
 }
 
+// Future use
 - (NSString*) cacheDirectory {
 	return [NSHomeDirectory() stringByAppendingString:@"/Library/Caches/images/"];
 }
 
-+ (UIImage*)loadImage:(NSURL *)url {
-    return [sharedSingleton loadImage:url];
-}
-
-- (UIImage*)loadImage:(NSURL *)url {
-	// NSLog(@"url = %@", url);
-	UIImage* img = [loadedImages objectForKey:url];
-    if (img) {
-        return img;
+- (void)loadImage:(NSString*)url success:(void (^)(UIImage *image))success {
+    static NSString* cacheName = nil;
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    request.cachePolicy = NSURLRequestReturnCacheDataElseLoad;
+    UIImage *image = [[AFImageCache sharedImageCache] cachedImageForURL:request.URL cacheName:cacheName];
+    if (image) {
+        success(image);
+    } else {
+        AFImageRequestOperation* operation = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:nil cacheName:cacheName success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            success(image);
+        } failure:nil];
+        
+        [downloadQueue addOperation:operation];
     }
-    
-    if ([pendingImages containsObject:url]) {
-        // already being downloaded
-        return nil;
-    }
-    
-    [pendingImages addObject:url];
-    
-    ASIHTTPRequest *request = [[ASIHTTPRequest alloc] initWithURL:url];
-    /*
-     Here you can configure a cache system
-     
-     if (!cache) {
-     ASIDownloadCache* _cache = [[ASIDownloadCache alloc] init];
-     self.cache = _cache;
-     [_cache release];
-     [cache setStoragePath:[self cacheDirectory]];
-     }
-     // [request setDownloadCache:cache];
-     // [request setCachePolicy:ASIOnlyLoadIfNotCachedCachePolicy];
-     // [request setCacheStoragePolicy:ASICachePermanentlyCacheStoragePolicy];
-     
-     */
-    
-    [request setDelegate:self];
-    [request setDidFinishSelector:@selector(imageDone:)];
-    [request setDidFailSelector:@selector(imageWentWrong:)];
-    [downloadQueue addOperation:request];
-    [request release];
-    return nil;
 }
 
-- (void)imageDone:(ASIHTTPRequest*)request {
-	UIImage* image = [UIImage imageWithData:[request responseData]];
-	if (!image) {
-		return;
-	}
-	
-	// NSLog(@"image done. %@ cached = %d", request.originalURL, [request didUseCachedResponse]);
-	
-	[pendingImages removeObject:request.originalURL];
-	[loadedImages setObject:image forKey:request.originalURL];
-	
-	SEL selector = @selector(imageLoaded:withURL:);
-	NSArray* viewControllers = nil;
-	
-    IOSBoilerplateAppDelegate* delegate = [IOSBoilerplateAppDelegate sharedAppDelegate];
-    // change this if your application is not based on a UINavigationController
-	viewControllers = delegate.navigationController.viewControllers;
-	
-	for (UIViewController* vc in viewControllers) {
-		if ([vc respondsToSelector:selector]) {
-			[vc performSelector:selector withObject:image withObject:request.originalURL];
-		}
-	}
-}
-
-- (void)imageWentWrong:(ASIHTTPRequest*)request {
-	NSLog(@"image went wrong %@", [[request error] localizedDescription]);
-	[pendingImages removeObject:request.originalURL]; // TODO should not try to load the image again for a while
++ (void)loadImage:(NSString*)url success:(void (^)(UIImage *image))success {
+    [sharedSingleton loadImage:url success:success];
 }
 
 + (void) clearMemoryCache {
@@ -145,8 +91,7 @@ static ImageManager *sharedSingleton;
 }
 
 - (void) clearMemoryCache {
-	[loadedImages removeAllObjects];
-	[pendingImages removeAllObjects];
+    [[AFImageCache sharedImageCache] removeAllObjects];
 }
 
 + (void) clearCache {

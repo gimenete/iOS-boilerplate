@@ -33,7 +33,7 @@
 @implementation AsyncCell
 
 @synthesize info;
-@synthesize imageURL;
+@synthesize image;
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) 
@@ -46,6 +46,7 @@
 
 - (void) prepareForReuse {
 	[super prepareForReuse];
+    self.image = nil;
 }
 
 static UIFont* system14 = nil;
@@ -62,7 +63,7 @@ static UIFont* bold14 = nil;
 
 - (void)dealloc {
     [info release];
-    [imageURL release];
+    [image release];
     
     [super dealloc];
 }
@@ -83,32 +84,21 @@ static UIFont* bold14 = nil;
 	[[UIColor grayColor] set];
 	[text drawInRect:CGRectMake(63.0, 25.0, widthr, 20.0) withFont:system14 lineBreakMode:UILineBreakModeTailTruncation];
 	
-	if (imageURL) {
-		UIImage* img = [ImageManager loadImage:imageURL];
-		if (img) {
-			CGRect r = CGRectMake(5.0, 5.0, 48.0, 48.0);
-			[img drawInRect:r];
-		}
+	if (image) {
+		CGRect r = CGRectMake(5.0, 5.0, 48.0, 48.0);
+		[image drawInRect:r];
 	}
 }
 
 - (void) updateCellInfo:(NSDictionary*)_info {
 	self.info = _info;
-	NSString* image = [info stringForKey:@"profile_image_url"];
-	if (image) {
-		NSURL* url = [[NSURL alloc] initWithString:image];
-		self.imageURL = url;
-		[url release];
-	} else {
-        self.imageURL = nil;
+	NSString* url = [info stringForKey:@"profile_image_url"];
+	if (url) {
+        [ImageManager loadImage:url success:^(UIImage* img) {
+            self.image = img;
+            [self setNeedsDisplay];
+        }];
     }
-	[self setNeedsDisplay];
-}
-
-- (void) imageLoaded:(UIImage*)image withURL:(NSURL*)url {
-	if ([imageURL isEqual:url]) {
-		[self setNeedsDisplay];
-	}
 }
 
 @end

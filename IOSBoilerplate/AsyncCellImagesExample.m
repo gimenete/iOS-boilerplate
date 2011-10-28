@@ -81,10 +81,6 @@
     return cell;
 }
      
-- (void) imageLoaded:(UIImage*)image withURL:(NSURL*)url {
-    [self refreshCellsWithImage:image fromURL:url inTable:table];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 58;
 }
@@ -110,28 +106,26 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     [SVProgressHUD showInView:self.view];
     
-    // By using [self requestWithURL:@"..."]; the reques is cancelled if the user closes this view controller
-    ASIHTTPRequest* request = [self requestWithURL:@"http://search.twitter.com/search.json?q=%23ios"];
-    [request setDidFinishSelector:@selector(requestFinished:)];
-    [request setDidFailSelector:@selector(requestFailed:)];
-    [request startAsynchronous];
+    NSURLRequest *request = [self requestWithURL:@"http://search.twitter.com/search.json?q=%23ios"];
+    [self jsonRequest:request
+              success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                  [SVProgressHUD dismiss];
+                  
+                  self.results = [JSON arrayForKey:@"results"];
+                  [table reloadData];
+              }
+              failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                  [SVProgressHUD dismissWithError:[error localizedDescription]];
+              }
+     ];
 }
-
-- (void)requestFinished:(ASIHTTPRequest*)request {
-    [SVProgressHUD dismiss];
-    
-    NSDictionary* result = [[request responseString] objectFromJSONString];
-    self.results = [result arrayForKey:@"results"];
-    [table reloadData];
-}
-
-- (void)requestFailed:(ASIHTTPRequest*)request {
-    [SVProgressHUD dismissWithError:[[request error] localizedDescription]];
-}
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;

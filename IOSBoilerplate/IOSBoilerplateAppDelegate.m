@@ -28,6 +28,7 @@
 
 #import "IOSBoilerplateAppDelegate.h"
 #import "ImageManager.h"
+#import "AFURLCache.h"
 
 @implementation IOSBoilerplateAppDelegate
 
@@ -40,8 +41,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    // Add the navigation controller's view to the window and display.
+    // use custom URLCache to get disk caching on iOS
+    AFURLCache *URLCache = [[[AFURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
+                                                          diskCapacity:1024*1024*5 // 5MB disk cache
+                                                              diskPath:[AFURLCache defaultCachePath]] autorelease];
+    
+	[NSURLCache setSharedURLCache:URLCache];
+    
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     return YES;

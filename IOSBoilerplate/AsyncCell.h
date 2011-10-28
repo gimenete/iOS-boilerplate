@@ -31,7 +31,7 @@
 @interface AsyncCell : FastCell
 
 @property (nonatomic, retain) NSDictionary* info;
-@property (nonatomic, retain) NSURL* imageURL;
+@property (nonatomic, retain) UIImage* image;
 
 - (void) updateCellInfo:(NSDictionary*)_info;
 

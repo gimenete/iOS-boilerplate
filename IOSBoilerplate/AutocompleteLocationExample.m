@@ -27,9 +27,9 @@
 //  
 
 #import "AutocompleteLocationExample.h"
-#import "Place.h"
 #import "StringHelper.h"
 #import "JSONKit.h"
+#import <MapKit/MapKit.h>
 
 @implementation AutocompleteLocationExample
 
@@ -78,6 +78,7 @@
 #pragma mark -
 #pragma mark ASIHTTPRequest delegate methods
 
+/*
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
 	NSMutableArray* sug = [[NSMutableArray alloc] init];
@@ -119,6 +120,7 @@
 {
 	loading = NO;
 }
+ */
 
 #pragma mark -
 #pragma mark Search backend
@@ -130,10 +132,46 @@
 	// example: query = [NSString stringWithFormat:@"%@, Spain", text];
 	NSString *urlEncode = [query urlEncode];
 	NSString* u = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&hl=%@&oe=UTF8", urlEncode, [[NSLocale currentLocale] localeIdentifier]];
-	NSURL* url = [NSURL URLWithString:u];
-	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-	[request setDelegate:self];
-	[request startAsynchronous];
+    NSURLRequest *request = [self requestWithURL:u];
+    [self jsonRequest:request
+              success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                  NSLog(@"success");
+                  NSMutableArray* sug = [[NSMutableArray alloc] init];
+                  
+                  NSArray* placemarks = [JSON objectForKey:@"Placemark"];
+                  
+                  for (NSDictionary* placemark in placemarks) {
+                      NSString* address = [placemark objectForKey:@"address"];
+                      
+                      NSDictionary* point = [placemark objectForKey:@"Point"];
+                      NSArray* coordinates = [point objectForKey:@"coordinates"];
+                      NSNumber* lon = [coordinates objectAtIndex:0];
+                      NSNumber* lat = [coordinates objectAtIndex:1];
+                      
+                      MKPointAnnotation* place = [[MKPointAnnotation alloc] init];
+                      place.title = address;
+                      CLLocationCoordinate2D c = CLLocationCoordinate2DMake([lat doubleValue], [lon doubleValue]);
+                      place.coordinate = c;
+                      [sug addObject:place];
+                      [place release];
+                  }
+                  
+                  self.suggestions = sug;
+                  [sug release];
+                  
+                  [self.searchDisplayController.searchResultsTableView reloadData];
+                  loading = NO;
+                  
+                  if (dirty) {
+                      dirty = NO;
+                      [self loadSearchSuggestions];
+                  }
+              }
+              failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                  NSLog(@"failure %@", [error localizedDescription]);
+                  loading = NO;
+              }
+     ];
 }
 
 #pragma mark -
@@ -152,7 +190,7 @@
 		cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0];
 	}
 	
-	Place* suggestion = [suggestions objectAtIndex:indexPath.row];
+	MKPointAnnotation* suggestion = [suggestions objectAtIndex:indexPath.row];
 	cell.textLabel.text = suggestion.title;
 	return cell;
 }
@@ -161,7 +199,7 @@
 {
 	[self.searchDisplayController setActive:NO animated:YES];
 	
-	Place* suggestion = [suggestions objectAtIndex:indexPath.row];
+	MKPointAnnotation* suggestion = [suggestions objectAtIndex:indexPath.row];
     // You could add "suggestion" to a map since it implements MKAnnotation
     // example: [map addAnnotation:suggestion]
 

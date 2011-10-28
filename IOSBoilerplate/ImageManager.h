@@ -27,19 +27,15 @@
 //  
 
 #import <Foundation/Foundation.h>
-#import "ASIDownloadCache.h"
 
 @interface ImageManager : NSObject {
     
-    NSMutableArray* pendingImages;
-	NSMutableDictionary* loadedImages;
 	NSOperationQueue *downloadQueue;
-	ASIDownloadCache *cache;
     
 }
 
-+ (UIImage*)loadImage:(NSURL *)url;
-- (UIImage*)loadImage:(NSURL *)url;
++ (void)loadImage:(NSString*)url success:(void (^)(UIImage *image))success;
+- (void)loadImage:(NSString*)url success:(void (^)(UIImage *image))success;
 
 + (void) clearMemoryCache;
 - (void) clearMemoryCache;

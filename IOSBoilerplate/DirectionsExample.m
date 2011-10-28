@@ -28,7 +28,6 @@
 
 #import "DirectionsExample.h"
 #import "StringHelper.h"
-#import "Place.h"
 
 @implementation DirectionsExample
 
@@ -47,7 +46,7 @@
 }
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-	if ([annotation isKindOfClass:[Place class]]) {
+	if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
 		MKPinAnnotationView* pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pin"];
 		pin.canShowCallout = YES;
 		if (annotation == source) {
@@ -148,13 +147,61 @@
 	NSString* s = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@&hl=%@", saddr, daddr, [[NSLocale currentLocale] localeIdentifier]];
     // by car:
     // s = [s stringByAppendingFormat:@"&dirflg=w"];
+    NSURLRequest *request = [self requestWithURL:s];
+    
+    
+    [self simpleRequest:request
+              success:^(id object) {
+                  @try {
+                      NSData* data = object;
+                      NSString* responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                      
+                      // TODO: better parsing. Regular expression?
+                      
+                      NSInteger a = [responseString indexOf:@"points:\"" from:0];
+                      NSInteger b = [responseString indexOf:@"\",levels:\"" from:a] - 10;
+                      
+                      NSInteger c = [responseString indexOf:@"tooltipHtml:\"" from:0];
+                      NSInteger d = [responseString indexOf:@"(" from:c];
+                      NSInteger e = [responseString indexOf:@")\"" from:d] - 2;
+                      
+                      NSString* info = [[responseString substringFrom:d to:e] stringByReplacingOccurrencesOfString:@"\\x26#160;" withString:@""];
+                      NSLog(@"tooltip %@", info);
+                      
+                      NSString* encodedPoints = [responseString substringFrom:a to:b];
+                      NSArray* steps = [self decodePolyLine:[encodedPoints mutableCopy]];
+                      if (steps && [steps count] > 0) {
+                          [self setRoutePoints:steps];
+                          //} else if (!steps) {
+                          //	[self showError:@"No se pudo calcular la ruta"];
+                      } else {
+                          // TODO: show error
+                      }
+                      
+                      [responseString release];
+                  }
+                  @catch (NSException * e) {
+                      // TODO: show error
+                  }
+              }
+              failure:^(NSHTTPURLResponse *response, NSError *error) {
+                  // TODO: show error
+              }
+     ];
+
+    /*
+	NSString* s = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@&hl=%@", saddr, daddr, [[NSLocale currentLocale] localeIdentifier]];
+    // by car:
+    // s = [s stringByAppendingFormat:@"&dirflg=w"];
 	
-	ASIHTTPRequest *req = [self requestWithURL:s];
+	/* ASIHTTPRequest *req = [self requestWithURL:s];
 	[req setDidFinishSelector:@selector(calculateDirectionsFinished:)];
 	[req setDidFailSelector:@selector(calculateDirectionsFailed:)];
 	[req startAsynchronous];
+     */
 }
 
+/*
 - (void)calculateDirectionsFinished:(ASIHTTPRequest *)request {
 	@try {
 		NSString* responseString = [request responseString];
@@ -189,7 +236,8 @@
 - (void)calculateDirectionsFailed:(ASIHTTPRequest *)request {
     // TODO: show error
 }
-
+*/
+ 
 // Decode a polyline.
 // See: http://code.google.com/apis/maps/documentation/utilities/polylinealgorithm.html
 - (NSMutableArray *)decodePolyLine:(NSMutableString *)encoded {
@@ -251,11 +299,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    Place* a = [[Place alloc] init];
+    MKPointAnnotation* a = [[MKPointAnnotation alloc] init];
     a.title = @"Santurce";
     a.coordinate = CLLocationCoordinate2DMake(43.3282, -3.031509);
 
-    Place* b = [[Place alloc] init];
+    MKPointAnnotation* b = [[MKPointAnnotation alloc] init];
     b.title = @"Bilbao";
     b.coordinate = CLLocationCoordinate2DMake(43.256963, -2.923441);
     

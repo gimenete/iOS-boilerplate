@@ -27,21 +27,37 @@
 
 
 #import <UIKit/UIKit.h>
-#import "ASIHTTPRequest.h"
-#import "ASIFormDataRequest.h"
+#import "AFJSONRequestOperation.h"
+#import "AFXMLRequestOperation.h"
+#import "AFImageRequestOperation.h"
+#import "AFHTTPRequestOperation.h"
 
 @interface BaseViewController : UIViewController {
 	
 	NSMutableArray* requests;
+    NSOperationQueue *queue;
 	
 }
 
-- (ASIHTTPRequest*) requestWithURL:(NSString*) s;
-- (ASIFormDataRequest*) formRequestWithURL:(NSString*) s;
-- (void) addRequest:(ASIHTTPRequest*)request;
-- (void) clearFinishedRequests;
-- (void) cancelRequests;
+- (void) queueOperation:(NSOperation*)operation;
+- (void) cancelOperations;
 
-- (void) refreshCellsWithImage:(UIImage*)image fromURL:(NSURL*)url inTable:(UITableView*)tableView;
+- (NSURLRequest*) requestWithURL:(NSString*)urlString;
+- (NSMutableURLRequest*) mutableRequestWithURL:(NSString*)urlString;
+
+- (AFHTTPRequestOperation *)simpleRequest:(NSURLRequest *)urlRequest
+                                  success:(void (^)(id object))success 
+                                  failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure;
+
+- (AFImageRequestOperation*) imageRequest:(NSURLRequest *)urlRequest
+                                  success:(void (^)(UIImage *image))success;
+
+- (AFJSONRequestOperation*) jsonRequest:(NSURLRequest *)urlRequest
+                                success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))success
+                                failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure;
+
+- (AFXMLRequestOperation*) xmlRequest:(NSURLRequest *)urlRequest
+                              success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *XMLParser))success
+                              failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure;
 
 @end

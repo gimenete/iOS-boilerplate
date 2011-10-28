@@ -32,7 +32,6 @@
 @implementation AsyncImageExample
 
 @synthesize imageView;
-@synthesize url;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,7 +55,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.title = @"Async image example";
 }
 
 - (void)viewDidUnload
@@ -66,23 +65,18 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
-    NSURL* _url = [[NSURL alloc] initWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Zaragoza_shel.JPG/266px-Zaragoza_shel.JPG"];
-    self.url = _url;
-    [_url release];
+    NSString* url = @"http://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Zaragoza_shel.JPG/266px-Zaragoza_shel.JPG";
+    [ImageManager loadImage:url success:^(UIImage* img) {
+        imageView.image = img;
+    }];
     
-    UIImage* image = [ImageManager loadImage:url];
-    
-    if (image) {
-        imageView.image = image;
-    }
 }
 
-- (void)imageLoaded:(UIImage*)image withURL:(NSURL*)_url {
-    if ([url isEqual:_url]) {
-        imageView.image = image;
-    }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -91,7 +85,6 @@
 
 - (void)dealloc {
     [imageView release];
-    [url release];
     
     [super dealloc];
 }
