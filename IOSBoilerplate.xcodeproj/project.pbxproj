@@ -75,6 +75,15 @@
 		09E442D9141F9DD400AD2DAE /* SwipeableTableViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442D7141F9DD400AD2DAE /* SwipeableTableViewExample.m */; };
 		09E442DA141F9DD400AD2DAE /* SwipeableTableViewExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09E442D8141F9DD400AD2DAE /* SwipeableTableViewExample.xib */; };
 		09E442DD141F9E3600AD2DAE /* SwipeableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E442DC141F9E3600AD2DAE /* SwipeableCell.m */; };
+		D8EA24C4145BA49100EB08B3 /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA24C0145BA49100EB08B3 /* BrowserViewController.m */; };
+		D8EA24C5145BA49100EB08B3 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8EA24C1145BA49100EB08B3 /* BrowserViewController.xib */; };
+		D8EA24C6145BA49100EB08B3 /* MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA24C3145BA49100EB08B3 /* MyApplication.m */; };
+		D8EA24CC145BA4AC00EB08B3 /* left.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EA24C8145BA4AC00EB08B3 /* left.png */; };
+		D8EA24CD145BA4AC00EB08B3 /* left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EA24C9145BA4AC00EB08B3 /* left@2x.png */; };
+		D8EA24CE145BA4AC00EB08B3 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EA24CA145BA4AC00EB08B3 /* right.png */; };
+		D8EA24CF145BA4AC00EB08B3 /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EA24CB145BA4AC00EB08B3 /* right@2x.png */; };
+		D8EA24D3145BA4BC00EB08B3 /* BrowserSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA24D1145BA4BC00EB08B3 /* BrowserSampleViewController.m */; };
+		D8EA24D4145BA4BC00EB08B3 /* BrowserSampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8EA24D2145BA4BC00EB08B3 /* BrowserSampleViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +206,18 @@
 		09E442DB141F9E3600AD2DAE /* SwipeableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeableCell.h; sourceTree = "<group>"; };
 		09E442DC141F9E3600AD2DAE /* SwipeableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeableCell.m; sourceTree = "<group>"; };
 		C37BC8E3144C340600423D44 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D8EA24BF145BA49100EB08B3 /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
+		D8EA24C0145BA49100EB08B3 /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
+		D8EA24C1145BA49100EB08B3 /* BrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowserViewController.xib; sourceTree = "<group>"; };
+		D8EA24C2145BA49100EB08B3 /* MyApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApplication.h; sourceTree = "<group>"; };
+		D8EA24C3145BA49100EB08B3 /* MyApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyApplication.m; sourceTree = "<group>"; };
+		D8EA24C8145BA4AC00EB08B3 /* left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left.png; sourceTree = "<group>"; };
+		D8EA24C9145BA4AC00EB08B3 /* left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left@2x.png"; sourceTree = "<group>"; };
+		D8EA24CA145BA4AC00EB08B3 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
+		D8EA24CB145BA4AC00EB08B3 /* right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right@2x.png"; sourceTree = "<group>"; };
+		D8EA24D0145BA4BC00EB08B3 /* BrowserSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserSampleViewController.h; sourceTree = "<group>"; };
+		D8EA24D1145BA4BC00EB08B3 /* BrowserSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserSampleViewController.m; sourceTree = "<group>"; };
+		D8EA24D2145BA4BC00EB08B3 /* BrowserSampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowserSampleViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,6 +327,7 @@
 			children = (
 				093EC375145B0DE90010CDBB /* AFNetworking */,
 				092D3D29145AE52F002F5F6C /* AFURLCache */,
+				D8EA24BD145BA45C00EB08B3 /* BrowserViewController */,
 				09E442B7141F969400AD2DAE /* RefreshTableHeaderView */,
 				09885F491419027D00CCE17A /* JSONKit */,
 				09885F3E1418FFE000CCE17A /* SVProgressHUD */,
@@ -356,6 +378,9 @@
 		09885EF51418F48300CCE17A /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				D8EA24D0145BA4BC00EB08B3 /* BrowserSampleViewController.h */,
+				D8EA24D1145BA4BC00EB08B3 /* BrowserSampleViewController.m */,
+				D8EA24D2145BA4BC00EB08B3 /* BrowserSampleViewController.xib */,
 				09885F391418FC6E00CCE17A /* HTTPHUDExample.h */,
 				09885F3A1418FC6E00CCE17A /* HTTPHUDExample.m */,
 				09885F3B1418FC6E00CCE17A /* HTTPHUDExample.xib */,
@@ -454,6 +479,30 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		D8EA24BD145BA45C00EB08B3 /* BrowserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D8EA24BF145BA49100EB08B3 /* BrowserViewController.h */,
+				D8EA24C0145BA49100EB08B3 /* BrowserViewController.m */,
+				D8EA24C1145BA49100EB08B3 /* BrowserViewController.xib */,
+				D8EA24C2145BA49100EB08B3 /* MyApplication.h */,
+				D8EA24C3145BA49100EB08B3 /* MyApplication.m */,
+				D8EA24C7145BA49900EB08B3 /* icons */,
+			);
+			name = BrowserViewController;
+			sourceTree = "<group>";
+		};
+		D8EA24C7145BA49900EB08B3 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				D8EA24C8145BA4AC00EB08B3 /* left.png */,
+				D8EA24C9145BA4AC00EB08B3 /* left@2x.png */,
+				D8EA24CA145BA4AC00EB08B3 /* right.png */,
+				D8EA24CB145BA4AC00EB08B3 /* right@2x.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -541,6 +590,12 @@
 				09E442CD141F970400AD2DAE /* whiteArrow@2x.png in Resources */,
 				09E442D5141F989200AD2DAE /* PullDownExample.xib in Resources */,
 				09E442DA141F9DD400AD2DAE /* SwipeableTableViewExample.xib in Resources */,
+				D8EA24C5145BA49100EB08B3 /* BrowserViewController.xib in Resources */,
+				D8EA24CC145BA4AC00EB08B3 /* left.png in Resources */,
+				D8EA24CD145BA4AC00EB08B3 /* left@2x.png in Resources */,
+				D8EA24CE145BA4AC00EB08B3 /* right.png in Resources */,
+				D8EA24CF145BA4AC00EB08B3 /* right@2x.png in Resources */,
+				D8EA24D4145BA4BC00EB08B3 /* BrowserSampleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +666,9 @@
 				093EC392145B0DE90010CDBB /* AFURLConnectionOperation.m in Sources */,
 				093EC393145B0DE90010CDBB /* AFXMLRequestOperation.m in Sources */,
 				093EC394145B0DE90010CDBB /* UIImageView+AFNetworking.m in Sources */,
+				D8EA24C4145BA49100EB08B3 /* BrowserViewController.m in Sources */,
+				D8EA24C6145BA49100EB08B3 /* MyApplication.m in Sources */,
+				D8EA24D3145BA4BC00EB08B3 /* BrowserSampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

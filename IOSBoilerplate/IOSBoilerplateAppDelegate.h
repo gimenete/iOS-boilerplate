@@ -36,4 +36,6 @@
 
 + (IOSBoilerplateAppDelegate*) sharedAppDelegate;
 
+- (BOOL)openURL:(NSURL*)url;
+
 @end
