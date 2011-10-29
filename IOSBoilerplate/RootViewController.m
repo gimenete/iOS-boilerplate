@@ -35,6 +35,7 @@
 #import "AutocompleteLocationExample.h"
 #import "PullDownExample.h"
 #import "SwipeableTableViewExample.h"
+#import "BrowserSampleViewController.h"
 
 @implementation RootViewController
 
@@ -72,7 +73,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -87,6 +88,10 @@
             
         case 2:
             return @"Maps & locations";
+            break;
+            
+        case 3:
+            return @"Web Browser";
             break;
             
         default:
@@ -108,6 +113,10 @@
             
         case 2:
             return 2;
+            break;
+            
+        case 3:
+            return 1;
             break;
             
         default:
@@ -181,6 +190,16 @@
             default:
                 break;
         }
+    } else if (indexPath.section == 3) {
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"Web Browser integration";
+                cell.detailTextLabel.text = @"Open URLs from UITextViews, UIWebViews, UITableViews, and UIButtons";
+                break;
+                
+            default:
+                break;
+        }
     }
     
     return cell;
@@ -239,8 +258,16 @@
             default:
                 break;
         }
+    } else if (indexPath.section == 3) {
+        switch (indexPath.row) {
+            case 0:
+                vc = [[BrowserSampleViewController alloc] init];
+                break;
+                
+            default:
+                break;
+        }
     }
-    
     
     if (vc) {
         [self.navigationController pushViewController:vc animated:YES];
