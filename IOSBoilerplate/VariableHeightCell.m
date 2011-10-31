@@ -27,7 +27,6 @@
 //  
 
 #import "VariableHeightCell.h"
-#import "ImageManager.h"
 #import "DictionaryHelper.h"
 
 @implementation VariableHeightCell

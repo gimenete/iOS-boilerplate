@@ -26,10 +26,9 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //  
 
-#import "BaseViewController.h"
 #import <MapKit/MapKit.h>
 
-@interface DirectionsExample : BaseViewController
+@interface DirectionsExample : UIViewController
 
 @property(nonatomic, retain) id<MKAnnotation> source;
 @property(nonatomic, retain) id<MKAnnotation> destination;

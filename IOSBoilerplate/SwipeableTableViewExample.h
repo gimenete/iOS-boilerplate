@@ -26,9 +26,9 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //  
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface SwipeableTableViewExample : BaseViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SwipeableTableViewExample : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, retain) IBOutlet UITableView* table;
 

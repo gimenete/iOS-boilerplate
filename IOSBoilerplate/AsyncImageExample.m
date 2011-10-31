@@ -27,7 +27,8 @@
 //  
 
 #import "AsyncImageExample.h"
-#import "ImageManager.h"
+
+#import "UIImageView+AFNetworking.h"
 
 @implementation AsyncImageExample
 
@@ -68,11 +69,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSString* url = @"http://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Zaragoza_shel.JPG/266px-Zaragoza_shel.JPG";
-    [ImageManager loadImage:url success:^(UIImage* img) {
-        imageView.image = img;
-    }];
-    
+    [self.imageView setImageWithURL:[NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Zaragoza_shel.JPG/266px-Zaragoza_shel.JPG"]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

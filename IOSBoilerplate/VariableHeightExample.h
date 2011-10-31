@@ -26,9 +26,9 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //  
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface VariableHeightExample : BaseViewController <UITableViewDelegate, UITableViewDataSource>
+@interface VariableHeightExample : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, retain) IBOutlet UITableView* table;
 @property (nonatomic, retain) NSArray* results;
