@@ -27,8 +27,8 @@
 //  
 
 #import "AsyncCell.h"
-#import "ImageManager.h"
 #import "DictionaryHelper.h"
+#import "AFImageRequestOperation.h"
 
 @implementation AsyncCell
 
@@ -92,12 +92,13 @@ static UIFont* bold14 = nil;
 
 - (void) updateCellInfo:(NSDictionary*)_info {
 	self.info = _info;
-	NSString* url = [info stringForKey:@"profile_image_url"];
-	if (url) {
-        [ImageManager loadImage:url success:^(UIImage* img) {
-            self.image = img;
+	NSString *urlString = [info stringForKey:@"profile_image_url"];
+	if (urlString) {
+        AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]] success:^(UIImage *requestedImage) {
+            self.image = requestedImage;
             [self setNeedsDisplay];
         }];
+        [operation start];
     }
 }
 

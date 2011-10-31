@@ -46,7 +46,6 @@
 		09885EC31418F2E600CCE17A /* IOSBoilerplateTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 09885EC21418F2E600CCE17A /* IOSBoilerplateTests.h */; };
 		09885EC51418F2E600CCE17A /* IOSBoilerplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09885EC41418F2E600CCE17A /* IOSBoilerplateTests.m */; };
 		09885EF91418F4AB00CCE17A /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09885EF81418F4AB00CCE17A /* BaseViewController.m */; };
-		09885F381418F73A00CCE17A /* ImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09885F371418F73A00CCE17A /* ImageManager.m */; };
 		09885F3C1418FC6F00CCE17A /* HTTPHUDExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 09885F3A1418FC6E00CCE17A /* HTTPHUDExample.m */; };
 		09885F3D1418FC6F00CCE17A /* HTTPHUDExample.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09885F3B1418FC6E00CCE17A /* HTTPHUDExample.xib */; };
 		09885F421418FFE000CCE17A /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 09885F3F1418FFE000CCE17A /* SVProgressHUD.bundle */; };
@@ -162,8 +161,6 @@
 		09885EF11418F44200CCE17A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		09885EF71418F4AB00CCE17A /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		09885EF81418F4AB00CCE17A /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		09885F361418F73A00CCE17A /* ImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManager.h; sourceTree = "<group>"; };
-		09885F371418F73A00CCE17A /* ImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManager.m; sourceTree = "<group>"; };
 		09885F391418FC6E00CCE17A /* HTTPHUDExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPHUDExample.h; sourceTree = "<group>"; };
 		09885F3A1418FC6E00CCE17A /* HTTPHUDExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPHUDExample.m; sourceTree = "<group>"; };
 		09885F3B1418FC6E00CCE17A /* HTTPHUDExample.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTTPHUDExample.xib; sourceTree = "<group>"; };
@@ -420,8 +417,6 @@
 			children = (
 				09885EF71418F4AB00CCE17A /* BaseViewController.h */,
 				09885EF81418F4AB00CCE17A /* BaseViewController.m */,
-				09885F361418F73A00CCE17A /* ImageManager.h */,
-				09885F371418F73A00CCE17A /* ImageManager.m */,
 				09885F46141901E700CCE17A /* DictionaryHelper.h */,
 				09885F47141901E700CCE17A /* DictionaryHelper.m */,
 				09885F5714190D7900CCE17A /* FastCell.h */,
@@ -635,7 +630,6 @@
 				09885EA51418F2E600CCE17A /* IOSBoilerplateAppDelegate.m in Sources */,
 				09885EAB1418F2E600CCE17A /* RootViewController.m in Sources */,
 				09885EF91418F4AB00CCE17A /* BaseViewController.m in Sources */,
-				09885F381418F73A00CCE17A /* ImageManager.m in Sources */,
 				09885F3C1418FC6F00CCE17A /* HTTPHUDExample.m in Sources */,
 				09885F431418FFE000CCE17A /* SVProgressHUD.m in Sources */,
 				09885F48141901E700CCE17A /* DictionaryHelper.m in Sources */,

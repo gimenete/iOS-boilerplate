@@ -27,7 +27,6 @@
 //  
 
 #import "IOSBoilerplateAppDelegate.h"
-#import "ImageManager.h"
 #import "AFURLCache.h"
 #import "BrowserViewController.h"
 
@@ -100,11 +99,9 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-    [ImageManager releaseSingleton];
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-	[ImageManager clearMemoryCache];
 }
 
 - (void)dealloc
