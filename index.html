@@ -19,9 +19,17 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	-->
 
-	<link rel="stylesheet" href="./css/bootstrap-1.1.0.min.css">
+	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
+	<style>
+		html{overflow-y:scroll}
+		body{padding-top:60px}
+	</style>
 
 </head>
+
+<body>
+	
+	<a href="https://github.com/gimenete/iOS-boilerplate"><img style="position: fixed; top: 40px; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
 
     <div class="topbar">
       <div class="fill">
@@ -31,20 +39,20 @@
             <li><a href="#http-requests">HTTP requests &amp; ImageManager</a></li>
             <li><a href="#uitableview">UITableView &amp; cells</a></li>
             <li><a href="#maps">Maps &amp; locations</a></li>
+            <li><a href="#browser">Builtin browser</a></li>
             <li><a href="#others">Other things included</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="container">
-		<br><br><br>
 		
 			<div class="page-header">
 				<h1>Introducing iOS Boilerplate <small>A base template for iOS apps</small></h1>
 			</div>
 			
 			<div class="row">
-			    <div class="span6 columns">
+			    <div class="span9 columns">
 			      <h2>What is it?</h2>
 			      <p>This project is inspired on <a href="http://html5boilerplate.com">HTML5 boilerplate</a>.</p>
 					<ul>
@@ -53,10 +61,14 @@
 						<li>It is intended to be modified and extended by the developer to fit their needs</li>
 						<li>It includes solid third-party libraries if needed to not reinvent the wheel</li>
 					</ul>
-					<p><a class="btn primary large" href="https://github.com/gimenete/iOS-boilerplate">Download it now!</a></p>
-			    </div>
-				<div class="span5 columns">
-			      <h3>What is supported</h3>
+					<p>
+						<a class="btn primary large" href="https://github.com/gimenete/iOS-boilerplate">Download it now!</a>
+						<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="gimenete" data-lang="es">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+					</p>
+					
+					<br>
+
+			      <h2>What is supported</h2>
 					<p>
 						iOS Boilerplate is tested on iPhone / iPod Touch devices with iOS 4.0 or greater.
 						In the future it might support universal applications (iPhone + iPad)
@@ -65,9 +77,10 @@
 						At the moment iOS Boilerplate is just an XCode project. Is planned to be released
 						as a true XCode template in the near future.
 					</p>
-				</div>
-			    <div class="span5 columns">
-			      <h3>What's included</h3>
+					
+					<br>
+
+			      <h2>What's included</h2>
 			      <p>iOS Boilerplate includes helper classes and examples about the following topics:</p>
 			      <ul>
 			        <li>HTTP requests and an image cache (both in-memory and disk-based)</li>
@@ -75,71 +88,74 @@
 			        <li>Maps and locations: directions between two points, autocomplete a location, etc.</li>
 			      </ul>
 			    </div>
+				<div class="span4 columns">
+					<img src="img/async-images.png">
+				</div>
 			  </div>
 			
 			
-			<section id="http-requests"><br><br><br>
+			<section id="http-requests">
 			<div class="row">
-				<div class="span9 columns">
+				<div class="span16 columns">
 					<div class="page-header">
 						<h2>HTTP requests</h2>
 					</div>
 					<p>
-						iOS Boilerplate includes <a href="http://allseeing-i.com/ASIHTTPRequest/">ASIHTTPRequest</a>,
-						a great library for handling HTTP requests. However, iOS Boilerplate also includes a
-						BaseViewController class you can use to prevent some problems with async requests.
+						iOS Boilerplate includes <strike>ASIHTTPRequest</strike>
+						<a href="https://github.com/gowalla/AFNetworking">AFNetworking</a>,
+						a great library for handling HTTP requests. But iOS Boilerplate also includes a
+						BaseViewController class you can subclass to make even easier the use of AFNetworking.
+						In AFNetworking requests are NSOperations that have to be added to a NSOperationQueue.
+						With BaseViewController you have some short-and methods to create specific requests
+						depending on the expected content-type result and BaseViewControllers adds
+						them directly to a NSOperationQueue handled transparently.
 					</p>
-					<p>By using any of these:</p>
-					<pre>- (ASIHTTPRequest*) requestWithURL:(NSString*)url;</code>
-- (ASIFormDataRequest*) formRequestWithURL:(NSString*)url;</code></pre>
+					<p>These are the short-hand methods to create requests:</p>
+					<pre>- (NSURLRequest*) requestWithURL:(NSString*)urlString;
+- (NSMutableURLRequest*) mutableRequestWithURL:(NSString*)urlString;</pre>
+
+					<p>These are the short-hand methods to process requests</p>
+					<pre>- (AFHTTPRequestOperation *)simpleRequest:(NSURLRequest *)urlRequest
+	success:(void (^)(id object))success 
+	failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure;
+
+- (AFImageRequestOperation*) imageRequest:(NSURLRequest *)urlRequest
+	success:(void (^)(UIImage *image))success;
+
+- (AFJSONRequestOperation*) jsonRequest:(NSURLRequest *)urlRequest
+	success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))success
+	failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure;
+
+- (AFXMLRequestOperation*) xmlRequest:(NSURLRequest *)urlRequest
+	success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *XMLParser))success
+	failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure;</pre>
+	
+					<p>You can also cancel all requests at some point using <code>[self cancelOperations]</code>.</p>
 				
-					<p>
-						The returned request objects are automatically cancelled when the ViewController is deallocated.
-						This saves resources and prevents the request to call any delegate already deallocated when it is finished.
-					</p>
-				
-					<p>You can also cancel manually any running request by using <code>- (void) cancelRequests;</code></p>
+					<p>See <code>HTTPHUDExample</code> to view a simple example of these methods.</p>
 			
 					<div class="page-header">
 						<h2>ImageManager</h2>
 					</div>
 					<p>
 						The <code>ImageManager</code> class provides methods for caching and loading images asynchronously.
-						It uses ASIHTTPRequest and <code>NSOperation</code> for the async stuff. It holds an in-memory cache,
-						and with minor modifications (see commented code in that class) an on-disk cache can be used. The
-						code is commented because you should choose the best cache policy for your needs.
+						It uses AFNetworking and
+						<a href="https://github.com/steipete/AFNetworking/blob/disk-cache/AFNetworking/AFRestClient.h">
+						<code>AFURLCache</code></a> behind the scenes. AFURLCache implements both in-memory and in-disk caches.
+						AFURLCache has been developed by <a href="https://github.com/steipete">steipete</a>.
 					</p>
 					<p>
-						You start loading an image by calling <code>+ (UIImage*)loadImage:(NSURL *)url;</code>. If the
-						image can be loaded from cache it is returned. Otherwise <code>nil</code> is returned.
+						To load an image just use this method:
 					</p>
+					<pre>+ (void)loadImage:(NSString*)url success:(void (^)(UIImage *image))success;</pre>
 					<p>
-						When an image is loaded all ViewControllers implementing a method with this signature are called:
-					</p>
-					<pre>- (void)imageLoaded:(UIImage*)image withURL:(NSURL*)_url</pre>
-					<p>
-						Since any ViewController will be notified about any image loaded you must remember the URL of
-						the image to ensure that that's the image you are interested in. See
+						See
 						<a href="https://github.com/gimenete/iOS-boilerplate/blob/master/IOSBoilerplate/AsyncImageExample.m">AsyncImageExample.m</a> for better understanding.
 					</p>
 					<p>
-						If you are interested in loading async images in a UITableView you can use this code:
-					</p>
-					<pre>- (void) imageLoaded:(UIImage*)image withURL:(NSURL*)url {
-		[self refreshCellsWithImage:image fromURL:url inTable:table];
-	}</pre>
-					<p>
-						The method <code>refreshCellsWithImage:fromURL:inTable:</code> is defined inside
-						<code>BaseViewController</code>. It will iterate over the visible cells an will call
-						<code>- (void) imageLoaded:(UIImage*)image withURL:(NSURL*)url</code> on those cells that implement it.
-					</p>
-					<p>
-						For a complete example about async images inside UITableViewCells see
+						If you are interested in loading async images in a UITableView there is a complete example about async images inside UITableViewCells. See
 						<a href="https://github.com/gimenete/iOS-boilerplate/blob/master/IOSBoilerplate/AsyncCellImagesExample.m">AsyncCellImagesExample.m</a>
 					</p>
-				</div>
-				<div class="span4 columns">
-					<img src="img/async-images.png">
 				</div>
 			</div>
 			</section>
@@ -193,6 +209,41 @@
 			</div>
 			</section>
 			
+			<section id="browser"><br><br><br>
+			<div class="row">
+				<div class="span9 columns">
+					<div class="page-header">
+						<h2>Built-in web browser</h2>
+					</div>
+
+					<p>Thanks to <a href="https://github.com/nbuggia">nbuggia</a> you can now open URLs inside
+						your application just opening them as always:</p>
+					
+					<pre>[[UIApplication sharedApplication] openURL:url];</pre>
+					
+					<p>A new viewController will be shown without exiting your app.
+						However, what happens if you really need to open a URL in Safari? No worries, just use
+						this method instead:</p>
+					
+					<pre>[(MyApplication*)[UIApplication sharedApplication] openURL:url forceOpenInSafari:YES];</pre>
+					
+					<p>What if you don't want this to be the default behaviour? What if you want to open
+						URLs by default in Safari? Just edit
+						<code>main.m</code>. Put <code>nil</code> instead of @"MyApplication"</p>
+					
+					<p>And now, to use the built-in web browser explicitly use this:</p>
+					
+					<pre>BrowserViewController *bvc = [[BrowserViewController alloc] initWithUrls:url];
+[self.navigationController pushViewController:bvc animated:YES];
+[bvc release];</pre>
+
+					
+				</div>
+				<div class="span4 columns">
+					<img src="img/web-browser.png">
+				</div>
+			</div>
+			
 			<section id="maps"><br><br><br>
 			<div class="row">
 				<div class="span9 columns">
@@ -200,9 +251,9 @@
 						<h2>Maps &amp; locations</h2>
 					</div>
 					
-					<h3>Place.m</h3>
+					<h3><strike>Place.m</strike></h3>
 					<p>
-						This class is just a simple implementation of the <code>MKAnnotation</code> protocol.
+						This class has been removed. Now all examples use <code>MKPointAnnotation_class</code> instead.
 					</p>
 				
 					<h3>Directions</h3>
@@ -234,7 +285,7 @@
 			<div class="page-header">
 				<h2>Other things included</h2>
 			</div>
-			<div class="row">
+			<div class="row"> <div class="span16 columns">
 				<h3>JSONKit</h3>
 				<p>
 					iOS Boilerplate includes <a href="https://github.com/johnezang/JSONKit">JSONKit</a> that is
@@ -284,9 +335,8 @@
 					<code>- (NSString*)hexString;</code> and returns a NSString in hexadecimal representing
 					the content of the original <code>NSData</code> object.
 				</p>
-			</div>
+			</div></div>
 			</section>
-
 
       <footer>
         <p>iOS Boilerplate is developed and maintained by <a href="http://twitter.com/gimenete">@gimenete</a></p>
