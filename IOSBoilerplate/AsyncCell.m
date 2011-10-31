@@ -27,8 +27,9 @@
 //  
 
 #import "AsyncCell.h"
-#import "ImageManager.h"
 #import "DictionaryHelper.h"
+
+#import "UIImageView+AFNetworking.h"
 
 @implementation AsyncCell
 
@@ -84,20 +85,21 @@ static UIFont* bold14 = nil;
 	[[UIColor grayColor] set];
 	[text drawInRect:CGRectMake(63.0, 25.0, widthr, 20.0) withFont:system14 lineBreakMode:UILineBreakModeTailTruncation];
 	
-	if (image) {
+	if (self.image) {
 		CGRect r = CGRectMake(5.0, 5.0, 48.0, 48.0);
-		[image drawInRect:r];
+		[self.image drawInRect:r];
 	}
 }
 
 - (void) updateCellInfo:(NSDictionary*)_info {
 	self.info = _info;
-	NSString* url = [info stringForKey:@"profile_image_url"];
-	if (url) {
-        [ImageManager loadImage:url success:^(UIImage* img) {
-            self.image = img;
+    NSString *urlString = [info stringForKey:@"profile_image_url"];
+	if (urlString) {
+        AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]] success:^(UIImage *requestedImage) {
+            self.image = requestedImage;
             [self setNeedsDisplay];
         }];
+        [operation start];
     }
 }
 

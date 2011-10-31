@@ -26,9 +26,9 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //  
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface AsyncImageExample : BaseViewController
+@interface AsyncImageExample : UIViewController
 
 @property (nonatomic, retain) IBOutlet UIImageView* imageView;
 

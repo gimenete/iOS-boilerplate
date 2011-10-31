@@ -28,8 +28,7 @@
 
 #import "VariableHeightExample.h"
 #import "SVProgressHUD.h"
-#import "JSONKit.h"
-#import "DictionaryHelper.h"
+#import "TwitterSearchClient.h"
 #import "VariableHeightCell.h"
 
 @implementation VariableHeightExample
@@ -110,18 +109,14 @@
     
     [SVProgressHUD showInView:self.view];
     
-    NSURLRequest *request = [self requestWithURL:@"http://search.twitter.com/search.json?q=%23cats"];
-    [self jsonRequest:request
-              success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                  [SVProgressHUD dismiss];
-                  
-                  self.results = [JSON arrayForKey:@"results"];
-                  [table reloadData];
-              }
-              failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                  [SVProgressHUD dismissWithError:[error localizedDescription]];
-              }
-     ];
+    [[TwitterSearchClient sharedClient] getPath:@"search" parameters:[NSDictionary dictionaryWithObject:@"cats" forKey:@"q"] success:^(id object) {
+        [SVProgressHUD dismiss];
+        
+        self.results = [object valueForKey:@"results"];
+        [table reloadData];
+    } failure:^(NSHTTPURLResponse *response, NSError *error) {
+        [SVProgressHUD dismissWithError:[error localizedDescription]];
+    }];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

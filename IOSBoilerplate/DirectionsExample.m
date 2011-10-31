@@ -28,6 +28,7 @@
 
 #import "DirectionsExample.h"
 #import "StringHelper.h"
+#import "AFHTTPRequestOperation.h"
 
 @implementation DirectionsExample
 
@@ -144,50 +145,45 @@
 	NSString* saddr = [NSString stringWithFormat:@"%f,%f", f.latitude, f.longitude];
 	NSString* daddr = [NSString stringWithFormat:@"%f,%f", t.latitude, t.longitude];
 	
-	NSString* s = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@&hl=%@", saddr, daddr, [[NSLocale currentLocale] localeIdentifier]];
+	NSString* urlString = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@&hl=%@", saddr, daddr, [[NSLocale currentLocale] localeIdentifier]];
     // by car:
-    // s = [s stringByAppendingFormat:@"&dirflg=w"];
-    NSURLRequest *request = [self requestWithURL:s];
+    // urlString = [urlString stringByAppendingFormat:@"&dirflg=w"];
     
-    
-    [self simpleRequest:request
-              success:^(id object) {
-                  @try {
-                      NSData* data = object;
-                      NSString* responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                      
-                      // TODO: better parsing. Regular expression?
-                      
-                      NSInteger a = [responseString indexOf:@"points:\"" from:0];
-                      NSInteger b = [responseString indexOf:@"\",levels:\"" from:a] - 10;
-                      
-                      NSInteger c = [responseString indexOf:@"tooltipHtml:\"" from:0];
-                      NSInteger d = [responseString indexOf:@"(" from:c];
-                      NSInteger e = [responseString indexOf:@")\"" from:d] - 2;
-                      
-                      NSString* info = [[responseString substringFrom:d to:e] stringByReplacingOccurrencesOfString:@"\\x26#160;" withString:@""];
-                      NSLog(@"tooltip %@", info);
-                      
-                      NSString* encodedPoints = [responseString substringFrom:a to:b];
-                      NSArray* steps = [self decodePolyLine:[encodedPoints mutableCopy]];
-                      if (steps && [steps count] > 0) {
-                          [self setRoutePoints:steps];
-                          //} else if (!steps) {
-                          //	[self showError:@"No se pudo calcular la ruta"];
-                      } else {
-                          // TODO: show error
-                      }
-                      
-                      [responseString release];
-                  }
-                  @catch (NSException * e) {
-                      // TODO: show error
-                  }
-              }
-              failure:^(NSHTTPURLResponse *response, NSError *error) {
-                  // TODO: show error
-              }
-     ];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.completionBlock = ^ {
+        @try {
+            NSData* data = operation.responseData;
+            NSString* responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            
+            // TODO: better parsing. Regular expression?
+            
+            NSInteger a = [responseString indexOf:@"points:\"" from:0];
+            NSInteger b = [responseString indexOf:@"\",levels:\"" from:a] - 10;
+            
+            NSInteger c = [responseString indexOf:@"tooltipHtml:\"" from:0];
+            NSInteger d = [responseString indexOf:@"(" from:c];
+            NSInteger e = [responseString indexOf:@")\"" from:d] - 2;
+            
+            NSString* info = [[responseString substringFrom:d to:e] stringByReplacingOccurrencesOfString:@"\\x26#160;" withString:@""];
+            NSLog(@"tooltip %@", info);
+            
+            NSString* encodedPoints = [responseString substringFrom:a to:b];
+            NSArray* steps = [self decodePolyLine:[encodedPoints mutableCopy]];
+            if (steps && [steps count] > 0) {
+                [self setRoutePoints:steps];
+                //} else if (!steps) {
+                //	[self showError:@"No se pudo calcular la ruta"];
+            } else {
+                // TODO: show error
+            }
+            
+            [responseString release];
+        }
+        @catch (NSException * e) {
+            // TODO: show error
+        } 
+    };
 
     /*
 	NSString* s = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@&hl=%@", saddr, daddr, [[NSLocale currentLocale] localeIdentifier]];
