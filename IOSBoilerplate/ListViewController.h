@@ -26,10 +26,9 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //  
 
-#import "BaseViewController.h"
 #import "EGORefreshTableHeaderView.h"
 
-@interface ListViewController : BaseViewController<EGORefreshTableHeaderDelegate> {
+@interface ListViewController : UIViewController <EGORefreshTableHeaderDelegate> {
 
     EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _reloading;

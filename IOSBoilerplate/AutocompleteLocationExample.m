@@ -29,6 +29,7 @@
 #import "AutocompleteLocationExample.h"
 #import "StringHelper.h"
 #import "JSONKit.h"
+#import "AFJSONRequestOperation.h"
 #import <MapKit/MapKit.h>
 
 @implementation AutocompleteLocationExample
@@ -131,47 +132,46 @@
     // You could limit the search to a region (e.g. a country) by appending more text to the query
 	// example: query = [NSString stringWithFormat:@"%@, Spain", text];
 	NSString *urlEncode = [query urlEncode];
-	NSString* u = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&hl=%@&oe=UTF8", urlEncode, [[NSLocale currentLocale] localeIdentifier]];
-    NSURLRequest *request = [self requestWithURL:u];
-    [self jsonRequest:request
-              success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                  NSLog(@"success");
-                  NSMutableArray* sug = [[NSMutableArray alloc] init];
-                  
-                  NSArray* placemarks = [JSON objectForKey:@"Placemark"];
-                  
-                  for (NSDictionary* placemark in placemarks) {
-                      NSString* address = [placemark objectForKey:@"address"];
-                      
-                      NSDictionary* point = [placemark objectForKey:@"Point"];
-                      NSArray* coordinates = [point objectForKey:@"coordinates"];
-                      NSNumber* lon = [coordinates objectAtIndex:0];
-                      NSNumber* lat = [coordinates objectAtIndex:1];
-                      
-                      MKPointAnnotation* place = [[MKPointAnnotation alloc] init];
-                      place.title = address;
-                      CLLocationCoordinate2D c = CLLocationCoordinate2DMake([lat doubleValue], [lon doubleValue]);
-                      place.coordinate = c;
-                      [sug addObject:place];
-                      [place release];
-                  }
-                  
-                  self.suggestions = sug;
-                  [sug release];
-                  
-                  [self.searchDisplayController.searchResultsTableView reloadData];
-                  loading = NO;
-                  
-                  if (dirty) {
-                      dirty = NO;
-                      [self loadSearchSuggestions];
-                  }
-              }
-              failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                  NSLog(@"failure %@", [error localizedDescription]);
-                  loading = NO;
-              }
-     ];
+	NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&hl=%@&oe=UTF8", urlEncode, [[NSLocale currentLocale] localeIdentifier]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"success");
+        NSMutableArray* sug = [[NSMutableArray alloc] init];
+        
+        NSArray* placemarks = [JSON objectForKey:@"Placemark"];
+        
+        for (NSDictionary* placemark in placemarks) {
+            NSString* address = [placemark objectForKey:@"address"];
+            
+            NSDictionary* point = [placemark objectForKey:@"Point"];
+            NSArray* coordinates = [point objectForKey:@"coordinates"];
+            NSNumber* lon = [coordinates objectAtIndex:0];
+            NSNumber* lat = [coordinates objectAtIndex:1];
+            
+            MKPointAnnotation* place = [[MKPointAnnotation alloc] init];
+            place.title = address;
+            CLLocationCoordinate2D c = CLLocationCoordinate2DMake([lat doubleValue], [lon doubleValue]);
+            place.coordinate = c;
+            [sug addObject:place];
+            [place release];
+        }
+        
+        self.suggestions = sug;
+        [sug release];
+        
+        [self.searchDisplayController.searchResultsTableView reloadData];
+        loading = NO;
+        
+        if (dirty) {
+            dirty = NO;
+            [self loadSearchSuggestions];
+        }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        NSLog(@"failure %@", [error localizedDescription]);
+        loading = NO;
+    }];
+    [operation start];
 }
 
 #pragma mark -

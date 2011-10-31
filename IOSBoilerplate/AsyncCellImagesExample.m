@@ -29,6 +29,7 @@
 #import "AsyncCellImagesExample.h"
 #import "SVProgressHUD.h"
 #import "JSONKit.h"
+#import "AFJSONRequestOperation.h"
 #import "DictionaryHelper.h"
 #import "AsyncCell.h"
 
@@ -113,18 +114,18 @@
     
     [SVProgressHUD showInView:self.view];
     
-    NSURLRequest *request = [self requestWithURL:@"http://search.twitter.com/search.json?q=%23ios"];
-    [self jsonRequest:request
-              success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                  [SVProgressHUD dismiss];
-                  
-                  self.results = [JSON arrayForKey:@"results"];
-                  [table reloadData];
-              }
-              failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                  [SVProgressHUD dismissWithError:[error localizedDescription]];
-              }
-     ];
+    NSString *urlString = @"http://search.twitter.com/search.json?q=%23ios";
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        [SVProgressHUD dismiss];
+        
+        self.results = [JSON arrayForKey:@"results"];
+        [table reloadData];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        [SVProgressHUD dismissWithError:[error localizedDescription]];
+
+    }];
+    [operation start];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

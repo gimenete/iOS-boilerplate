@@ -26,9 +26,9 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //  
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface AutocompleteLocationExample : BaseViewController
+@interface AutocompleteLocationExample : UIViewController
 
 @property (nonatomic, retain) NSMutableArray* suggestions;
 @property (nonatomic, retain) IBOutlet UILabel* label;

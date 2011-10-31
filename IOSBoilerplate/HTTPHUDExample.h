@@ -26,10 +26,10 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //  
 
-#import "BaseViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface HTTPHUDExample : BaseViewController {
-    
+@interface HTTPHUDExample : UIViewController {
+    NSOperationQueue *_requestOperationQueue;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel* label;

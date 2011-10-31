@@ -32,15 +32,20 @@
 #import "DictionaryHelper.h"
 #import "AFJSONRequestOperation.h"
 
+@interface HTTPHUDExample ()
+@property (readwrite, nonatomic, retain) NSOperationQueue *requestOperationQueue;
+@end
+
 @implementation HTTPHUDExample
 
 @synthesize label;
+@synthesize requestOperationQueue = _requestOperationQueue;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.requestOperationQueue = [[[NSOperationQueue alloc] init] autorelease];
     }
     return self;
 }
@@ -78,17 +83,15 @@
     
     [SVProgressHUD showInView:self.view];
     
-    NSURLRequest *request = [self requestWithURL:@"http://api.twitter.com/1/statuses/show.json?id=125372508387024896&include_entities=false"];
-    [self jsonRequest:request
-              success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                  label.text = [JSON valueForKeyPath:@"text"];
-                  [SVProgressHUD dismissWithSuccess:@"Ok!"];
-              }
-              failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                  label.text = @"error";
-                  [SVProgressHUD dismissWithError:[error localizedDescription]];
-              }
-     ];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.twitter.com/1/statuses/show.json?id=125372508387024896&include_entities=false"]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        label.text = [JSON valueForKeyPath:@"text"];
+        [SVProgressHUD dismissWithSuccess:@"Ok!"];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        label.text = @"error";
+        [SVProgressHUD dismissWithError:[error localizedDescription]];
+    }];
+    [operation start];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
