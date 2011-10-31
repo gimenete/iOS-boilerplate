@@ -151,6 +151,7 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
     operation.completionBlock = ^ {
         @try {
             NSData* data = operation.responseData;
@@ -184,56 +185,10 @@
             // TODO: show error
         } 
     };
-
-    /*
-	NSString* s = [NSString stringWithFormat:@"http://maps.google.com/maps?output=dragdir&saddr=%@&daddr=%@&hl=%@", saddr, daddr, [[NSLocale currentLocale] localeIdentifier]];
-    // by car:
-    // s = [s stringByAppendingFormat:@"&dirflg=w"];
-	
-	/* ASIHTTPRequest *req = [self requestWithURL:s];
-	[req setDidFinishSelector:@selector(calculateDirectionsFinished:)];
-	[req setDidFailSelector:@selector(calculateDirectionsFailed:)];
-	[req startAsynchronous];
-     */
+    [operation start];
+    [operation release];
 }
 
-/*
-- (void)calculateDirectionsFinished:(ASIHTTPRequest *)request {
-	@try {
-		NSString* responseString = [request responseString];
-        
-        // TODO: better parsing. Regular expression?
-        
-		NSInteger a = [responseString indexOf:@"points:\"" from:0];
-		NSInteger b = [responseString indexOf:@"\",levels:\"" from:a] - 10;
-		
-		NSInteger c = [responseString indexOf:@"tooltipHtml:\"" from:0];
-		NSInteger d = [responseString indexOf:@"(" from:c];
-		NSInteger e = [responseString indexOf:@")\"" from:d] - 2;
-		
-		NSString* info = [[responseString substringFrom:d to:e] stringByReplacingOccurrencesOfString:@"\\x26#160;" withString:@""];
-        NSLog(@"tooltip %@", info);
-		
-		NSString* encodedPoints = [responseString substringFrom:a to:b];
-		NSArray* steps = [self decodePolyLine:[encodedPoints mutableCopy]];
-		if (steps && [steps count] > 0) {
-			[self setRoutePoints:steps];
-			//} else if (!steps) {
-			//	[self showError:@"No se pudo calcular la ruta"];
-		} else {
-			// TODO: show error
-		}
-	}
-	@catch (NSException * e) {
-        // TODO: show error
-	}
-}
-
-- (void)calculateDirectionsFailed:(ASIHTTPRequest *)request {
-    // TODO: show error
-}
-*/
- 
 // Decode a polyline.
 // See: http://code.google.com/apis/maps/documentation/utilities/polylinealgorithm.html
 - (NSMutableArray *)decodePolyLine:(NSMutableString *)encoded {
@@ -308,6 +263,8 @@
     
     [map addAnnotation:a];
     [map addAnnotation:b];
+    
+    [map setCenterCoordinate:a.coordinate animated:NO];
     
     [a release];
     [b release];

@@ -77,53 +77,6 @@
 
 
 #pragma mark -
-#pragma mark ASIHTTPRequest delegate methods
-
-/*
-- (void)requestFinished:(ASIHTTPRequest *)request
-{
-	NSMutableArray* sug = [[NSMutableArray alloc] init];
-	
-    NSString *responseString = [request responseString];
-	
-	NSDictionary* dict = [responseString objectFromJSONString];
-	NSArray* placemarks = [dict objectForKey:@"Placemark"];
-	
-	for (NSDictionary* placemark in placemarks) {
-		NSString* address = [placemark objectForKey:@"address"];
-		
-		NSDictionary* point = [placemark objectForKey:@"Point"];
-		NSArray* coordinates = [point objectForKey:@"coordinates"];
-		NSNumber* lon = [coordinates objectAtIndex:0];
-		NSNumber* lat = [coordinates objectAtIndex:1];
-		
-		Place* place = [[Place alloc] init];
-		place.title = address;
-		CLLocationCoordinate2D c = CLLocationCoordinate2DMake([lat doubleValue], [lon doubleValue]);
-		place.coordinate = c;
-		[sug addObject:place];
-		[place release];
-	}
-	
-	self.suggestions = sug;
-    [sug release];
-    
-	[self.searchDisplayController.searchResultsTableView reloadData];
-	loading = NO;
-	
-	if (dirty) {
-		dirty = NO;
-		[self loadSearchSuggestions];
-	}
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request
-{
-	loading = NO;
-}
- */
-
-#pragma mark -
 #pragma mark Search backend
 
 - (void) loadSearchSuggestions {
@@ -136,7 +89,6 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"success");
         NSMutableArray* sug = [[NSMutableArray alloc] init];
         
         NSArray* placemarks = [JSON objectForKey:@"Placemark"];
@@ -171,6 +123,7 @@
         NSLog(@"failure %@", [error localizedDescription]);
         loading = NO;
     }];
+    operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
     [operation start];
 }
 
