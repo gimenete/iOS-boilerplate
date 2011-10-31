@@ -29,6 +29,7 @@
 #import "IOSBoilerplateAppDelegate.h"
 #import "ImageManager.h"
 #import "AFURLCache.h"
+#import "BrowserViewController.h"
 
 @implementation IOSBoilerplateAppDelegate
 
@@ -37,6 +38,15 @@
 
 + (IOSBoilerplateAppDelegate*) sharedAppDelegate {
 	return (IOSBoilerplateAppDelegate*) [UIApplication sharedApplication].delegate;
+}
+
+- (BOOL)openURL:(NSURL*)url
+{
+    BrowserViewController *bvc = [[BrowserViewController alloc] initWithUrls:url];
+    [self.navigationController pushViewController:bvc animated:YES];
+    [bvc release];
+    
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
