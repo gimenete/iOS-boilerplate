@@ -82,6 +82,7 @@
 		D8EA24CF145BA4AC00EB08B3 /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8EA24CB145BA4AC00EB08B3 /* right@2x.png */; };
 		D8EA24D3145BA4BC00EB08B3 /* BrowserSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8EA24D1145BA4BC00EB08B3 /* BrowserSampleViewController.m */; };
 		D8EA24D4145BA4BC00EB08B3 /* BrowserSampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8EA24D2145BA4BC00EB08B3 /* BrowserSampleViewController.xib */; };
+		F87266BC145EF4E200B775D3 /* TwitterSearchClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F87266BB145EF4E200B775D3 /* TwitterSearchClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +213,8 @@
 		D8EA24D0145BA4BC00EB08B3 /* BrowserSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserSampleViewController.h; sourceTree = "<group>"; };
 		D8EA24D1145BA4BC00EB08B3 /* BrowserSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserSampleViewController.m; sourceTree = "<group>"; };
 		D8EA24D2145BA4BC00EB08B3 /* BrowserSampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowserSampleViewController.xib; sourceTree = "<group>"; };
+		F87266BA145EF4E200B775D3 /* TwitterSearchClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterSearchClient.h; sourceTree = "<group>"; };
+		F87266BB145EF4E200B775D3 /* TwitterSearchClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterSearchClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,6 +425,8 @@
 				09270763141E4EC900E778AE /* DataHelper.m */,
 				09E442CE141F97AE00AD2DAE /* ListViewController.h */,
 				09E442CF141F97AE00AD2DAE /* ListViewController.m */,
+				F87266BA145EF4E200B775D3 /* TwitterSearchClient.h */,
+				F87266BB145EF4E200B775D3 /* TwitterSearchClient.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -657,6 +662,7 @@
 				D8EA24C4145BA49100EB08B3 /* BrowserViewController.m in Sources */,
 				D8EA24C6145BA49100EB08B3 /* MyApplication.m in Sources */,
 				D8EA24D3145BA4BC00EB08B3 /* BrowserSampleViewController.m in Sources */,
+				F87266BC145EF4E200B775D3 /* TwitterSearchClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
