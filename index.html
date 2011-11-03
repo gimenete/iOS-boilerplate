@@ -38,7 +38,7 @@
         <div class="container fixed">
           <h3><a href="index.html">iOS Boilerplate</a></h3>
           <ul>
-            <li><a href="#http-requests">HTTP requests &amp; ImageManager</a></li>
+            <li><a href="#http-requests">HTTP requests &amp; images</a></li>
             <li><a href="#uitableview">UITableView &amp; cells</a></li>
             <li><a href="#maps">Maps &amp; locations</a></li>
             <li><a href="#browser">Builtin browser</a></li>
@@ -102,63 +102,28 @@
 			  </div>
 			
 			
-			<section id="http-requests">
+			<section id="http-requests"><br><br><br>
 			<div class="row">
 				<div class="span16 columns">
 					<div class="page-header">
-						<h2>HTTP requests</h2>
+						<h2>HTTP requests &amp; images</h2>
 					</div>
 					<p>
 						iOS Boilerplate includes <strike>ASIHTTPRequest</strike>
 						<a href="https://github.com/gowalla/AFNetworking">AFNetworking</a>,
-						a great library for handling HTTP requests. But iOS Boilerplate also includes a
-						BaseViewController class you can subclass to make even easier the use of AFNetworking.
-						In AFNetworking requests are NSOperations that have to be added to a NSOperationQueue.
-						With BaseViewController you have some short-and methods to create specific requests
-						depending on the expected content-type result and BaseViewControllers adds
-						them directly to a NSOperationQueue handled transparently.
+						a great library for handling HTTP requests. See <code>HTTPHUDExample</code>
+						to view a simple example of how to use this library.
 					</p>
-					<p>These are the short-hand methods to create requests:</p>
-					<pre>- (NSURLRequest*) requestWithURL:(NSString*)urlString;
-- (NSMutableURLRequest*) mutableRequestWithURL:(NSString*)urlString;</pre>
-
-					<p>These are the short-hand methods to process requests</p>
-					<pre>- (AFHTTPRequestOperation *)simpleRequest:(NSURLRequest *)urlRequest
-	success:(void (^)(id object))success 
-	failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure;
-
-- (AFImageRequestOperation*) imageRequest:(NSURLRequest *)urlRequest
-	success:(void (^)(UIImage *image))success;
-
-- (AFJSONRequestOperation*) jsonRequest:(NSURLRequest *)urlRequest
-	success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))success
-	failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure;
-
-- (AFXMLRequestOperation*) xmlRequest:(NSURLRequest *)urlRequest
-	success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *XMLParser))success
-	failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure;</pre>
-	
-					<p>You can also cancel all requests at some point using <code>[self cancelOperations]</code>.</p>
-				
-					<p>See <code>HTTPHUDExample</code> to view a simple example of these methods.</p>
 			
-					<div class="page-header">
-						<h2>ImageManager</h2>
-					</div>
 					<p>
-						The <code>ImageManager</code> class provides methods for caching and loading images asynchronously.
-						It uses AFNetworking and
+						iOS Boilerplate also includes
 						<a href="https://github.com/steipete/AFNetworking/blob/disk-cache/AFNetworking/AFRestClient.h">
-						<code>AFURLCache</code></a> behind the scenes. AFURLCache implements both in-memory and in-disk caches.
+						<code>AFURLCache</code></a> that implements both in-memory and in-disk caches (great for images!).
 						AFURLCache has been developed by <a href="https://github.com/steipete">steipete</a>.
 					</p>
 					<p>
-						To load an image just use this method:
-					</p>
-					<pre>+ (void)loadImage:(NSString*)url success:(void (^)(UIImage *image))success;</pre>
-					<p>
 						See
-						<a href="https://github.com/gimenete/iOS-boilerplate/blob/master/IOSBoilerplate/AsyncImageExample.m">AsyncImageExample.m</a> for better understanding.
+						<a href="https://github.com/gimenete/iOS-boilerplate/blob/master/IOSBoilerplate/AsyncImageExample.m">AsyncImageExample.m</a> for a basic example on how to load images.
 					</p>
 					<p>
 						If you are interested in loading async images in a UITableView there is a complete example about async images inside UITableViewCells. See
@@ -259,11 +224,6 @@
 						<h2>Maps &amp; locations</h2>
 					</div>
 					
-					<h3><strike>Place.m</strike></h3>
-					<p>
-						This class has been removed. Now all examples use <code>MKPointAnnotation_class</code> instead.
-					</p>
-				
 					<h3>Directions</h3>
 					<p>
 						There is an example of how to calculate the directions between two points using the
@@ -344,6 +304,48 @@
 					the content of the original <code>NSData</code> object.
 				</p>
 			</div></div>
+			</section>
+			
+			<section id="not-included"><br><br><br>
+			<div class="page-header">
+				<h2>Not included but recommended</h2>
+			</div>
+			<div class="row"> <div class="span16 columns">
+				<h3>QuickDialog</h3>
+				<p>
+					<em><a href="https://github.com/escoz/QuickDialog">QuickDialog</a> allows you to create HIG-compliant iOS forms for your apps without having to directly deal with UITableViews, delegates and data sources. Fast and efficient, you can create forms with multiple text fields, or with thousands of items with no sweat!</em>
+				</p>
+
+				<h3>IBAForms</h3>
+				<p>
+					<em><a href="https://github.com/ittybittydude/IBAForms">IBAForms</a> is a framework for building data entry screens on the iPhone. You can quickly make forms using the built-in form field types or create your own custom fields and the user interfaces used to enter data for them</em>
+				</p>
+				
+
+				<h3>PSStackedView</h3>
+				<p>
+					<em><a href="https://github.com/steipete/PSStackedView">PSStackedView</a>: put your UIViewControllers in a stack, inspired by Twitter's iPAD UI</em>
+				</p>
+				
+				</div>
+			</div>
+			</section>
+
+			<section id="infinite"><br><br><br>
+				<div class="page-header">
+					<h2>To the infinity and beyond <small>more controls, libraries and frameworks</small></h2>
+				</div>
+				<div class="row"> <div class="span16 columns">
+					<h3>CocoaControls</h3>
+					<p>
+						<a href="http://cocoacontrols.com/">CocoaControls</a> Custom UI Controls for iOS and Mac OS X
+					</p>
+
+					<h3>iOS Frameworks</h3>
+					<p>
+						<a href="http://iosframeworks.com/">iOS Frameworks</a> A curated catalog of iOS frameworks and classes for the pragmatic iOS developer
+					</p>
+				</div>
 			</section>
 
       <footer>
