@@ -9,12 +9,12 @@
     <![endif]-->
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
 	<title>iOS Boilerplate - A base template for iOS apps</title>
 	<!--
     <meta name="description" content="">
     <meta name="author" content="">
 	<meta name="robots" content="">
-	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
 	<link rel="shortcut icon" href="/favicon.ico">
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	-->
@@ -25,13 +25,31 @@
 		body{padding-top:60px; background-image: url(stucco.png)}
 		.wrapper{background-color:white; margin: 0 auto; width: 980px; padding: 20px 0;
 			box-shadow: 0px 0px 15px #aaa;}
+			
+		@media only screen and (min-width: 768px) and (max-width: 991px) {
+			.wrapper { width: 740px; }
+			.container { width: 700px; }
+			img { max-width: 700px; }
+			#ribbon, .topbar, h1 small, h2 small { display:none; }
+			.row > [class*="span"] { max-width: 700px; }
+			body { padding-top: 0;}
+		}
+
+		@media only screen and (max-width: 767px) {
+			.wrapper { width: 280px; }
+			.container { width: 240px; }
+			#ribbon, .topbar, h1 small, h2 small { display:none; }
+			.row > [class*="span"] { width: 240px; }
+			img { max-width: 240px; }
+			body { padding-top: 0; }
+		}
 	</style>
 
 </head>
 
 <body>
 	
-	<a href="https://github.com/gimenete/iOS-boilerplate"><img style="position: fixed; top: 40px; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
+	<a id="ribbon" href="https://github.com/gimenete/iOS-boilerplate"><img style="position: fixed; top: 40px; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/30f550e0d38ceb6ef5b81500c64d970b7fb0f028/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub"></a>
 
     <div class="topbar">
       <div class="fill">
