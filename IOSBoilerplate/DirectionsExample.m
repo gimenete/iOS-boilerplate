@@ -29,6 +29,7 @@
 #import "DirectionsExample.h"
 #import "StringHelper.h"
 #import "AFHTTPRequestOperation.h"
+#import "SVProgressHUD.h"
 
 @implementation DirectionsExample
 
@@ -140,6 +141,9 @@
 }
 
 - (void)calculateDirections {
+  
+  [SVProgressHUD showInView:self.view status:@"Calculating directions"];
+  
 	CLLocationCoordinate2D f = source.coordinate;
 	CLLocationCoordinate2D t = destination.coordinate;
 	NSString* saddr = [NSString stringWithFormat:@"%f,%f", f.latitude, f.longitude];
@@ -180,9 +184,11 @@
             }
             
             [responseString release];
+            [SVProgressHUD dismiss];
         }
         @catch (NSException * e) {
             // TODO: show error
+            [SVProgressHUD dismissWithError:@"Error"];
         } 
     };
     [operation start];
