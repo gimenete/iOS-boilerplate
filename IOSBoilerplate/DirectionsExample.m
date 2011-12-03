@@ -328,8 +328,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.map = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -364,6 +363,13 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+- (void)dealloc
+{
+  map.delegate = nil;
+  [map release];
+  [super dealloc];
 }
 
 @end
