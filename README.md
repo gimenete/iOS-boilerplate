@@ -1,3 +1,5 @@
+# iOS Boilerplate ![Project status](http://stillmaintained.com/ahmet/iOS-boilerplate.png)
+
 What is IOS Boilerplate
 -----------------------
 
