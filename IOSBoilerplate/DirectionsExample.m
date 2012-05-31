@@ -277,4 +277,10 @@
     return YES;
 }
 
+-(void)dealloc{
+    map.delegate = nil;
+    [super dealloc];
+}
+
+
 @end
