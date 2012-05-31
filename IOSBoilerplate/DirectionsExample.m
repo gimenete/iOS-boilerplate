@@ -87,7 +87,10 @@
 	self.routeLine = [MKPolyline polylineWithPoints:pointArr count:locations.count];
 	free(pointArr);
 	
-	[map addOverlay:routeLine];
+	//Execute it in the main queue, related to the main thread because it's a view
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [map addOverlay:routeLine];
+    });
 	
 	
 	CLLocationDegrees maxLat = -90.0f;
@@ -117,7 +120,10 @@
 	region.span.latitudeDelta  = maxLat - minLat;
 	region.span.longitudeDelta = maxLon - minLon;
 	
-	[map setRegion:region animated:YES];
+	//Execute it in the main queue, related to the main thread because it's a view
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [map setRegion:region animated:YES];
+    });
 }
 
 - (void)drawRoute:(NSMutableDictionary *)response
@@ -269,7 +275,15 @@
     [a release];
     [b release];
     
-    [self calculateDirections];
+    //Creates a custom queue and execute the calculateDirections methos asynchronously
+    dispatch_queue_t queueAsync = dispatch_queue_create("com.ios.boilerplate", NULL);
+    dispatch_async(queueAsync, ^{
+        
+        [self calculateDirections];
+        
+    });
+    
+    dispatch_release(queueAsync);
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
