@@ -83,6 +83,13 @@ static UIFont* bold22 = nil;
     [super dealloc];
 }
 
+- (void) layoutSubviews
+{
+    // Overriding to get rid of default implementation.
+    // Default implementation in some situations (tap + swipe or sloooow swipe)
+    // cause system to change contentView.frame after animation start in setEditing:animated:
+}
+
 - (void) drawContentView:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
